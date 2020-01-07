@@ -21,3 +21,37 @@ $('#title').change(function(){
         $('#other-title').hide();
     }
 });
+
+/***T-shirt section needs to hide color options until the 2 shirt options are selected. 
+ * Then for "JS Puns" color options are cornflower blue, dark slate grey and gold
+For I love JS color options are tomoato, steel blue, and dim grey.***/
+
+//Hide all color options until theme selected and color section reads "Please select a T-Shirt theme"//
+const $themeColor = $('#color');
+$themeColor.hide();
+//Adds message to select theme://
+$('#color').prepend('<option>Please Select Theme</option>')
+$('#color').focus();
+//need to hide colors based on which design themes are selected://
+
+$('#design').change(function(){
+    const $designTheme =  $('#design');
+
+    if ($(this).val() === 'js puns') {
+        $themeColor.show();
+        $('option[value="cornflowerblue"]').show();
+        $('option[value="darkslategrey"]').show();
+        $('option[value="gold"]').show();
+        $('option[value="tomato"]').hide();
+        $('option[value="steelblue"]').hide();
+        $('option[value="dimgrey"]') .hide();
+     } else {
+        if ($(this).val() === 'heart js')
+        $('option[value="cornflowerblue"]').hide();
+        $('option[value="darkslategrey"]').hide();
+        $('option[value="gold"]').hide();
+        $('option[value="tomato"]').show();
+        $('option[value="steelblue"]').show();
+        $('option[value="dimgrey"]').show();
+    }
+});
