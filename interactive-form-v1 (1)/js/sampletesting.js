@@ -65,7 +65,7 @@ $('#design').change(function(){
 /*** activity Section 
  * create an element for total activity cost-it's at the top, tested with Dev tools
  * create an event listener for .acitivties ***/
-EventTarget.addEventListner('click', () => {
+$('.activities').change('click', () => {
 });
 
 
