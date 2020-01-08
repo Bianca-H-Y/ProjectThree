@@ -64,9 +64,30 @@ $('#design').change(function(){
 
 /*** activity Section 
  * create an element for total activity cost-it's at the top, tested with Dev tools
- * create an event listener for .acitivties ***/
-$('.activities').change('click', () => {
-});
+ * create a change event listener for .acitivties
+ * same day and time
+ * competing activities no longer disabled is unchecked
+ * running total ***/
+
+$('.activities').change('checkbox', (event) => {
+    const $target = $(event.target);
+    let $dateTimeSame = $target.attr('data-day-and-time');
+    
+   //if $dateTimeSame is the same limit other options//
+   //2 tuesday 9a-12pm; 2 Tuesday 1pm
+   //usefule htmlElement.disabled (for check boxes, boolen treu false)//
+    if (event.target.checked) {
+        $dateTimeSame.disable = false;
+    } else {
+        $dateTimeSame.disabled = true;
+    }
+
+    
+    //unsure if falase is needed above
+   //if $dateTimeSame === ''//
+    console.log($target);
+    console.log($dateTimeSame);
+}, false);
 
 
 /*** Register section: Adjust like/same-time workshop events. 
