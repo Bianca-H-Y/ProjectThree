@@ -16,8 +16,6 @@ const $themeColor = $('#color');
 $themeColor.hide();
 
 const messageTheme = $('#color').prepend('<option>Please Select Theme</option>');
-    $themeColor.show();
-
 
 $('#design').change(function(){
     const $designTheme =  $('#design');
