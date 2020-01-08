@@ -1,3 +1,7 @@
+//Global variables//
+const $newDiv = $('<div id="total"></div>');
+const allClassSelected = $('.activities').append($newDiv);
+let classTotal= 0;
 //test passed that JS is attached to HTML file: console.log('Hey');//
 //used CDN link for minified version of jQuery.
 //add style sheet successful:https://teamtreehouse.com/library/css-reset-with-normalize//
@@ -32,7 +36,7 @@ const $themeColor = $('#color');
 $themeColor.hide();
 //add select theme message//
 const $messageTheme = $('#color').prepend('<option>Please Select Theme</option>');
-    $themeColor.show();
+    $themeColor.hide();
     
 //Show correct colors when JS Puns selected-targeting the attrides of the color ID 
 $('#design').change(function(){
@@ -58,6 +62,11 @@ $('#design').change(function(){
      }
 });
 
+/*** activity Section 
+ * create an element for total activity cost-it's at the top, tested with Dev tools
+ * create an event listener for .acitivties ***/
+EventTarget.addEventListner('click', () => {
+});
 
 
 /*** Register section: Adjust like/same-time workshop events. 
