@@ -131,7 +131,33 @@ $('.activities').change(function(event) {
  * Paypal should display if paypal is selected and CC and bitcoin hidden.
  * When Bitcoin is selected CC and paypal should be hidden. 
  */
-//Hide select payment method option//
+
+
+
+
+//Display credit card section & Hide paypal & Bitcoin//
+//const $creditCard = ('option[value="credit card"]');
+//const $payPal = ('option[value="paypal"]');
+//const $bitCoin = ('option[value="bitcoin"]');
+//const $payment = $('#payment');//
+
+$('#payment').change(function(){
+    if ($(this).val() === 'credit card') {
+        $('option[value="credit card"]').show();
+        $('option[value="paypal"]').hide();
+        $('option[value="bitcoin"]').hide();
+//Hide payment selections based on options//
+     } else if ($(this).val() === 'paypal') {
+        $('option[value="paypal"]').show();
+        $('option[value="credit card"]').hide();
+        $('option[value="bitcoin"]').hide();
+    } else if ($(this).val() === 'bitcoin') {
+        $('option[value="bitcoin"]').show();
+        $('option[value="credit card"]').hide();
+        $('option[value="paypal"]').hide();
+    }
+     
+});
 //get value from payment 
 
 
