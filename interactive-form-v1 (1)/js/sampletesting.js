@@ -36,7 +36,7 @@ const $themeColor = $('#color');
 $themeColor.hide();
 //add select theme message//
 const $messageTheme = $('#color').prepend('<option>Please Select Theme</option>');
-    $themeColor.hide();
+  
     
 //Show correct colors when JS Puns selected-targeting the attrides of the color ID 
 $('#design').change(function(){
@@ -69,14 +69,16 @@ $('#design').change(function(){
  * competing activities no longer disabled is unchecked
  * running total ***/
 
-$('.activities').change('checkbox', (event) => {
-    const $target = $(event.target);
-    let $dateTimeSame = $target.attr('data-day-and-time');
+//event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
+$('.activities').change(function(event) {
+    const $checkedBox = $(event.target);
+    const $dateTimeSame = $checkedBox.attr('data-day-and-time');
     
-   //if $dateTimeSame is the same limit other options//
-   //2 tuesday 9a-12pm; 2 Tuesday 1pm
+   //if $dateTimeSame (day and time) is the same limit other options//
+   //2 tuesday 9a-12pm; 2 Tuesday 1pm//
    //usefule htmlElement.disabled (for check boxes, boolen treu false)//
     if (event.target.checked) {
+        
         $dateTimeSame.disable = false;
     } else {
         $dateTimeSame.disabled = true;
@@ -85,7 +87,7 @@ $('.activities').change('checkbox', (event) => {
     
     //unsure if falase is needed above
    //if $dateTimeSame === ''//
-    console.log($target);
+    console.log($checkedBox);
     console.log($dateTimeSame);
 }, false);
 
