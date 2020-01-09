@@ -78,8 +78,21 @@ $('.activities').change(function(event) {
     let $checkedClassTotalNumber = parseInt($checkedClassesTotal.replace('$', ''));
     //test with type of operator to log out the datta type: test working//
     console.log(typeof $checkedClassTotalNumber);
-   // log out the cost variable//
+   // log out the cost variable:working//
     console.log($checkedClassesTotal);
+
+    //Add if else statement to handler to add the cost if checkbox is clicked and to subtract if not//
+    if ($checkedBox.prop('checked', true)){
+        $classTotal = $classTotal + $checkedClassTotalNumber;
+        } else {
+        $classTotal = $classTotal - $checkedClassTotalNumber;
+        }
+        //add classTotal concatenation-use html to get contenst of total element//
+        $('#total').html('$' + $classTotal);
+});
+   
+   
+    //if ($checkedBox.prop('checked')) {
     /*** 
     const $dateTimeSame = $(checkedBox).attr('data-day-and-time');
     //let $classTotal=0 above)
@@ -102,7 +115,7 @@ $('.activities').change(function(event) {
     console.log($dateTimeSame);
     */
     
-});
+
 
 
 /*** Register section: Adjust like/same-time workshop events. 
