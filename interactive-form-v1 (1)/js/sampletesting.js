@@ -82,13 +82,17 @@ $('.activities').change(function(event) {
     console.log($checkedClassesTotal);
 
     //Add if else statement to handler to add the cost if checkbox is clicked and to subtract if not//
-    if ($checkedBox.prop('checked', true)){
+    //if ($checkedBox.prop('checked', true)){
+        if ($checkedBox.prop('checked')){
         $classTotal = $classTotal + $checkedClassTotalNumber;
+        //add classTotal concatenation with  Total: $ and show total with html jquery/
+        $('#total').html('Total: $'+ $classTotal);
         } else {
         $classTotal = $classTotal - $checkedClassTotalNumber;
         }
-        //add classTotal concatenation-use html to get contenst of total element//
-        $('#total').html('$' + $classTotal);
+        //add classTotal concatenation with  Total: $ and show total with html jquery//
+        $('#total').html('Total: $'+ $classTotal);
+        
 });
    
    
