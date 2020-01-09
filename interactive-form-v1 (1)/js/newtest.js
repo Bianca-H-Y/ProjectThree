@@ -70,11 +70,12 @@ $('#design').change(function(){
  * running total ***/
 
 //event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
+
+/*** 
 $('.activities').change(function(event) {
     const $checkedBox = $(event.target);
     const $dateTimeSame = $checkedBox.attr('data-day-and-time');
-     //target activity input elements//
-     let $conflictDateTime = $('.activities input[i]');
+
 
     //data cost attribute value of clicked check box element above//
     let $checkedClassesTotal = $checkedBox.attr('data-cost')
@@ -86,65 +87,55 @@ $('.activities').change(function(event) {
     console.log($checkedClassesTotal);
     // log out the dayinfo variable:working//
     console.log($dateTimeSame);
-     // log out the acitvity input variable:working//
-    console.log($conflictDateTime);
+    
+
     //Add if else statement to handler to add the cost if checkbox is clicked and to subtract if not//
     //if ($checkedBox.prop('checked', true)){
-        if ($checkedBox.prop('checked')){
-        $classTotal = $classTotal + $checkedClassTotalNumber;
-        //add classTotal concatenation with  Total: $ and show total with html jquery/
-        $('#total').html('Total: $'+ $classTotal);
-        } else {
-        $classTotal = $classTotal - $checkedClassTotalNumber;
-        }
-        //add classTotal concatenation with  Total: $ and show total with html jquery//
-        $('#total').html('Total: $'+ $classTotal);
-        //const $dateTimeSame = $checkedBox.attr('data-day-and-time');--added above//
-        //use bracket notation to loop through the checkboxes wihtout disabling activity just checked//
-        //use one statement with and operator
-         
-       
-        
-});
-   
-   
-    //if ($checkedBox.prop('checked')) {
-    /*** 
-    const $dateTimeSame = $(checkedBox).attr('data-day-and-time');
-    //let $classTotal=0 above)
-    
-   //if $dateTimeSame (day and time) is the same limit other options//
-   //2 tuesday 9a-12pm; 2 Tuesday 1pm//
-   //usefule htmlElement.disabled (for check boxes, boolen treu false)//
-    if ($checkedBox.prop('checked')) {
-
-        ($checkedBox).attr('disabled', true);
-
+    if ($checkedBox.prop('checked')){
+    $classTotal = $classTotal + $checkedClassTotalNumber;
+    //add classTotal concatenation with  Total: $ and show total with html jquery/
+    $('#total').html('Total: $'+ $classTotal);
     } else {
-         ($checkedBox).attr('disabled', false);
+    $classTotal = $classTotal - $checkedClassTotalNumber;
     }
-
+    //add classTotal concatenation with  Total: $ and show total with html jquery//
+    $('#total').html('Total: $'+ $classTotal);
+    //const $dateTimeSame = $checkedBox.attr('data-day-and-time');--added above//
+    //use bracket notation to loop through the checkboxes wihtout disabling activity just checked//
+         
+        
+    $activityCheckBox.each(function(i){
+    //target activity input elements//
+    const $activityCheckBox = $('.activities input');
+    const $currentDateTime = $activityCheckBox[i];
     
-    //unsure if falase is needed above
-   //if $dateTimeSame === ''//
-    
-    console.log($dateTimeSame);
-    */
-    
-
-
-
-/*** Register section: Adjust like/same-time workshop events. 
- * Hide options that conflict 
- * (disable the checkbox and create a notice that the workshop competes with another) */
-//If a user unchecks an activity any confliting ones become viable again
-//Total should appears as users add classes
+    //use one statement with and operator being sure to note when items are like//
+    const currentTarget = $(currentDateTime).attr('data-day-and-time');
+    const checkboxInputName = $(checkedBox).attr('name');
+    if (currentTarget  === $dateTimeSame &&  $checkedBox.attr('name') !== checkboxInputName) {
+     if ($checkedBox.prop('checked')){
+    ($checkedBox).attr('disabled', true);
+     } else {
+    ($checkedBox).attr('disabled', false);
+     }
+    }
+    // log out the acitvity input variable: not working-need to define//
+     console.log($currentDateTime);
+    })
+});
+  */
+ 
 
 /***payment Info section: Display payment sections based on payment options chosen
  * Selct CC by default: display the #credit-card div & hide the "paypal" & "Bitcoin" info.
  * Paypal should display if paypal is selected and CC and bitcoin hidden.
  * When Bitcoin is selected CC and paypal should be hidden. 
  */
+//Hide select payment method option//
+//get value from payment 
+
+
+
 
  /***Form validation: prevent the user from submitting the form if:
   * name field is blank
