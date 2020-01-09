@@ -1,7 +1,7 @@
 //Global variables//
 const $newDiv = $('<div id="total"></div>');
 const allClassSelected = $('.activities').append($newDiv);
-let classTotal= 0;
+let $classTotal= 0;
 //test passed that JS is attached to HTML file: console.log('Hey');//
 //used CDN link for minified version of jQuery.
 //add style sheet successful:https://teamtreehouse.com/library/css-reset-with-normalize//
@@ -72,24 +72,37 @@ $('#design').change(function(){
 //event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
 $('.activities').change(function(event) {
     const $checkedBox = $(event.target);
-    const $dateTimeSame = $checkedBox.attr('data-day-and-time');
+    //data cost attribute value of clicked check box element above//
+    let $checkedClassesTotal = $checkedBox.attr('data-cost')
+    //change string above into a number-jquery fit parsetInt//
+    let $checkedClassTotalNumber = parseInt($checkedClassesTotal.replace('$', ''));
+    //test with type of operator to log out the datta type: test working//
+    console.log(typeof $checkedClassTotalNumber);
+   // log out the cost variable//
+    console.log($checkedClassesTotal);
+    /*** 
+    const $dateTimeSame = $(checkedBox).attr('data-day-and-time');
+    //let $classTotal=0 above)
     
    //if $dateTimeSame (day and time) is the same limit other options//
    //2 tuesday 9a-12pm; 2 Tuesday 1pm//
    //usefule htmlElement.disabled (for check boxes, boolen treu false)//
-    if (event.target.checked) {
-        
-        $dateTimeSame.disable = false;
+    if ($checkedBox.prop('checked')) {
+
+        ($checkedBox).attr('disabled', true);
+
     } else {
-        $dateTimeSame.disabled = true;
+         ($checkedBox).attr('disabled', false);
     }
 
     
     //unsure if falase is needed above
    //if $dateTimeSame === ''//
-    console.log($checkedBox);
+    
     console.log($dateTimeSame);
-}, false);
+    */
+    
+});
 
 
 /*** Register section: Adjust like/same-time workshop events. 
