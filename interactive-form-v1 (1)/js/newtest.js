@@ -30,18 +30,25 @@ $('#title').change(function(){
 /***T-shirt section needs to hide color options until the 2 shirt options are selected. 
  * Then for "JS Puns" color options are cornflower blue, dark slate grey and gold
 For I love JS color options are tomoato, steel blue, and dim grey.***/
-//Hide color options until theme selected:
+//add select theme message//
 
+const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
+$selectDesignTheme.hide();
+
+// if the first child of id design "select them" is selected show the "please select theme message
+//save: const $emptyTheme = $('#design option').first(); 
+//save: $emptyTheme.hide();
+
+//Hide color options until theme selected:
 const $themeColor = $('#color');
 $themeColor.hide();
-//add select theme message//
-const $messageTheme = $('#color').prepend('<option>Please Select Theme</option>');
+
   
-    
 //Show correct colors when JS Puns selected-targeting the attrides of the color ID 
 $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
+        $selectDesignTheme.show();
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
         $('option[value="darkslategrey"]').show();
@@ -50,18 +57,17 @@ $('#design').change(function(){
         $('option[value="steelblue"]').hide();
         $('option[value="dimgrey"]') .hide();
      } else if ($(this).val() === 'heart js') {
-        $('option[value="cornflowerblue"]').hide();
-        $('option[value="darkslategrey"]').hide();
-        $('option[value="gold"]').hide();
+        $themeColor.show();
+        $selectDesignTheme.show();
         $('option[value="tomato"]').show();
         $('option[value="steelblue"]').show();
         $('option[value="dimgrey"]').show();
-    } else {
-        $themeColor.hide();
+        $('option[value="cornflowerblue"]').hide();
+        $('option[value="darkslategrey"]').hide();
+        $('option[value="gold"]').hide(); 
     
      }
 });
-
 /*** activity Section 
  * create an element for total activity cost-it's at the top, tested with Dev tools
  * create a change event listener for .acitivties
@@ -71,10 +77,10 @@ $('#design').change(function(){
 
 //event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
 
-/*** 
+
 $('.activities').change(function(event) {
     const $checkedBox = $(event.target);
-    const $dateTimeSame = $checkedBox.attr('data-day-and-time');
+    //may need back so undo if issue: const $dateTimeSame = $checkedBox.attr('data-day-and-time');
 
 
     //data cost attribute value of clicked check box element above//
@@ -102,8 +108,25 @@ $('.activities').change(function(event) {
     $('#total').html('Total: $'+ $classTotal);
     //const $dateTimeSame = $checkedBox.attr('data-day-and-time');--added above//
     //use bracket notation to loop through the checkboxes wihtout disabling activity just checked//
-         
-        
+       
+    //activities conflict day deselction sections
+    $('.activities').change(function(event) {
+        const $checkedBox = $(event.target);//may not need to write out again
+        const $dateTimeSame = $checkedBox.attr('data-day-and-time');
+        Input.each(function(index, value) {
+           const $checkedTime = $(value).attr('data-day-and-time')
+           if ($dateTimeSame === $checkedTime && $checkedBox.name !== value.name) {
+               if (($checkedBox).is(':checked')) {
+                   $checkedbox.attr('disabled', false);
+                   $checkedtime.attr('disabled', true);
+               } else {
+                $checkedbox.attr('disabled', false);
+                $checkedtime.attr('disabled', false);
+               }
+           }
+        })
+    });
+    /***    
     $activityCheckBox.each(function(i){
     //target activity input elements//
     const $activityCheckBox = $('.activities input');
@@ -122,8 +145,9 @@ $('.activities').change(function(event) {
     // log out the acitvity input variable: not working-need to define//
      console.log($currentDateTime);
     })
-});
-  */
+    */
+
+ 
  
 
 /***payment Info section: Display payment sections based on payment options chosen
@@ -180,7 +204,7 @@ $('#payment').change(function(){
    * Cvv
    * empty form 
    */
-
+/*** 
    /***extras:
     * adjust colors and style to custyomize the form 
     * Hide the "Color" label and select menu until a T-shirt design is selected 
