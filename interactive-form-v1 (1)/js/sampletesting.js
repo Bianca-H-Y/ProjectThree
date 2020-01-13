@@ -160,12 +160,31 @@ $('#payment').change(function(){
      
 });
 
-/***Form validation: prevent the user from submitting the form if:
+/***Form validation: prevent the user from submitting the form if with error notice:
   * name field is blank
-  * correct email format added
+  * incorrect email format added
   * at least 1 checkbox under activities
   * CC section must include a cc #, zip code, and 3 CVV
   */
+
+//validation function for Name
+const nameValid =() =>{
+    let $name = $('#name')
+    if (($name).val().length > 0 ) {
+        return false;
+    }else if (($name).val().length === 0 ) {
+        return true;
+        $('#name').after('span class="error">Please Add Namme</span>');
+    }
+        
+    
+};
+
+//validation function for email:
+//validation function for 1 checked box under activities
+////validation function for CC if credit card selected
+//validation function for Zip if credit card selected
+//validation function for cvv # if credit card selected
 
   /***Messages Validation: 
    * add indication that there's a validation error for
