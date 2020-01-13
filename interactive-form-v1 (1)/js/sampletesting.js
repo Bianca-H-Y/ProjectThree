@@ -137,27 +137,26 @@ $('.activities').change(function(event) {
  * When Bitcoin is selected CC and paypal should be hidden. 
  */
 
-//Display credit card section & Hide paypal & Bitcoin//
-//const $creditCard = ('option[value="credit card"]');
-//const $payPal = ('option[value="paypal"]');
-//const $bitCoin = ('option[value="bitcoin"]');
-//const $payment = $('#payment');//
-
+//Hide payment selection:
+$('#payment option:first-child').hide();
+//auto select CC
+$('#payment option[value="credit card"]').attr('selected', true);
+//Hide credit card section & Hide paypal & Bitcoin based on which is picked:
 $('#payment').change(function(){
     if ($(this).val() === 'credit card') {
-        $('option[value="credit card"]').show();
-        $('option[value="paypal"]').hide();
-        $('option[value="bitcoin"]').hide();
+        $('#credit-card').show();
+        $('#paypal').hide();
+        $('#bitcoin').hide();
 //Hide payment selections based on options//
      } else if ($(this).val() === 'paypal') {
-        $('option[value="paypal"]').show();
-        $('option[value="credit card"]').child().hide();
-        $('option[value="bitcoin"]').hide();
+        $('#paypal').show();
+        $('#credit-card').hide();
+        $('#bitcoin').hide();
     } else if ($(this).val() === 'bitcoin') {
-        $('option[value="bitcoin"]').show();
-        $('option[value="credit card"]').hide();
-        $('option[value="paypal"]').hide();
+        $('#bitcoin').show();
+        $('#credit-card').hide();
+        $('#paypal').hide();
+        
     }
      
 });
-//get value from payment 
