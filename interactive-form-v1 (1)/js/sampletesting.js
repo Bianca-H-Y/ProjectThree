@@ -111,19 +111,56 @@ $('.activities').change(function(event) {
          
 });
  
+//target activity input elements--catch conflicting checkboxes//
 $('.activities').change(function(event) {
-    let $checkedBox = ($(event.target));
-    const $dateTimeSame = $checkedBox.attr('data-day-and-time');
-    $('input').each(function(index, value) {
-       const $checkedTime = $(value).attr('data-day-and-time')
-       if ($dateTimeSame === $checkedTime && $checkedBox.name !== value.name) {
-           if (($checkedBox).is(':checked')) {
-               $($checkedBox).attr('disabled', false);
-               $($checkedTime).attr('disabled', true);
+    let checkedBox = event.target;
+    const dateTimeSame = $(checkedBox).attr('data-day-and-time');
+    const input = $('input[type="checkbox"]');
+   input.each(function(index, value) {
+       const checkedTime = $(value).attr('data-day-and-time');
+       //use one statement with and operator being sure to note when items are like//
+       if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
+           if ($(checkedBox).prop(':checked')) {
+               $(checkedBox).attr('disabled');
+              $(value).attr('disabled', true);
            } else {
-            $($checkedBox).attr('disabled', true);
-            $($checkedTime).attr('disabled', false);
+            $(checkedBox).attr('disabled', false);
+            $(value).attr('disabled', true);
            }
        }
-    })
+    });
 });
+
+/***payment Info section: Display payment sections based on payment options chosen
+ * Selct CC by default: display the #credit-card div & hide the "paypal" & "Bitcoin" info.
+ * Paypal should display if paypal is selected and CC and bitcoin hidden.
+ * When Bitcoin is selected CC and paypal should be hidden. 
+ */
+
+
+
+
+//Display credit card section & Hide paypal & Bitcoin//
+//const $creditCard = ('option[value="credit card"]');
+//const $payPal = ('option[value="paypal"]');
+//const $bitCoin = ('option[value="bitcoin"]');
+//const $payment = $('#payment');//
+
+$('#payment').change(function(){
+    if ($(this).val() === 'credit card') {
+        $('option[value="credit card"]').show();
+        $('option[value="paypal"]').hide();
+        $('option[value="bitcoin"]').hide();
+//Hide payment selections based on options//
+     } else if ($(this).val() === 'paypal') {
+        $('option[value="paypal"]').show();
+        $('option[value="credit card"]').hide();
+        $('option[value="bitcoin"]').hide();
+    } else if ($(this).val() === 'bitcoin') {
+        $('option[value="bitcoin"]').show();
+        $('option[value="credit card"]').hide();
+        $('option[value="paypal"]').hide();
+    }
+     
+});
+//get value from payment 
