@@ -33,7 +33,6 @@ For I love JS color options are tomoato, steel blue, and dim grey.***/
 //add select theme message//
 
 const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
-$selectDesignTheme.hide();
 
 // if the first child of id design "select them" is selected show the "please select theme message
 //save: const $emptyTheme = $('#design option').first(); 
@@ -49,7 +48,6 @@ $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
         $('#color option:first-child').hide();
-        $selectDesignTheme.show();
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
         $('option[value="darkslategrey"]').show();
@@ -58,8 +56,8 @@ $('#design').change(function(){
         $('option[value="steelblue"]').hide();
         $('option[value="dimgrey"]') .hide();
      } else if ($(this).val() === 'heart js') {
+        $('#color').eq(1).hide();
         $themeColor.show();
-        $selectDesignTheme.show();
         $('option[value="tomato"]').show();
         $('option[value="steelblue"]').show();
         $('option[value="dimgrey"]').show();
