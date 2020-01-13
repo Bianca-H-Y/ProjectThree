@@ -48,6 +48,7 @@ $themeColor.hide();
 $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
+        $('#color option:first-child').hide();
         $selectDesignTheme.show();
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
@@ -160,3 +161,21 @@ $('#payment').change(function(){
     }
      
 });
+
+/***Form validation: prevent the user from submitting the form if:
+  * name field is blank
+  * correct email format added
+  * at least 1 checkbox under activities
+  * CC section must include a cc #, zip code, and 3 CVV
+  */
+
+  /***Messages Validation: 
+   * add indication that there's a validation error for
+   * name
+   * email
+   * at least 1 activity box checked
+   * CC card number
+   * zip code
+   * Cvv
+   * empty form 
+   */
