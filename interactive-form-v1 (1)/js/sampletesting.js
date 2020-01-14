@@ -245,7 +245,7 @@ name backgor
    */
   //Begin with creating messages:
 
-  //name message: blank
+  //name message: blank: working
   //red = #750904
 //green = #1d5e04
 const $name = $('#name');
@@ -261,12 +261,50 @@ $name.focusout(function(event) {
    }
 
 });
-//email message
+//email message: working
 const $email = $('#mail');
-let $emailValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $email.focusout(function(event) {
-    if ($email.val() === "") {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
+        $emailValid = false; //this is the error flag
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+
+/*** 
+const $email = $('#mail');
+let $emailValid = false;
+let $emailValue = $('#mail').val();
+let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+[.][a-zA-Z]{3,7}$');
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    if (!$emailReg.test($emailValue)) {
+       // $emailValid = false;
+   // }
+    //if ($email.val() === "") {
+        $emailValid = false; //this is the error flag
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+*/
+
+/** 
+const $email = $('#mail');
+$email.focusout(function(event) {
+    
+    let $emailValid = false;
+    let $emailReg = new RegExp('^[a-zA-Z0-9_.%-+]+[.][a-zA-Z]{3,7}$');
+    let $emailValue = $('#mail').val();
+    if ($emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
         $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your email'});
     } else { 
@@ -274,3 +312,4 @@ $email.focusout(function(event) {
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your email'});
    }
 });
+*/
