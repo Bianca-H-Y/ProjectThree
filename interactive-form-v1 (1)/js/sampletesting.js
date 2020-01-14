@@ -302,21 +302,21 @@ $creditLength.focusout(function(event) {
 });
 
 // 5 digit ip code message
-const $creditLength = $('#cc-num');
-let $credilValid = false;
+const $zipCodeLength = $('#zip');
+let $zipCodeValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
-$creditLength.focusout(function(event) {
-    let $creditValue = $('#cc-num').val();
+$zipCodeLength.focusout(function(event) {
+    let $zipCodeValue = $('#zip').val();
     //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
-    let $creditReg = new RegExp('^\\d{13,16}$'); 
-    if (!$creditReg .test($creditValue )) {
-        $credilValid = false; //this is the error flag 
+    let $zipCodeReg = new RegExp('^\\d{5}$'); 
+    if (!$zipCodeReg .test($zipCodeValue)) {
+        $zipCodeValid  = false; //this is the error flag 
         //background turns red and asks for correct cc digits
-        $creditLength.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter 13-16 digits'});
+        $zipCodeLength.css({backgroundColor: '#750904'}).attr({placeholder: '5 digit Zipcode'});
     } else { 
-        $credilValid = true;
+        $zipCodeValid = true; //zipcode is correct remove attached attribute
            //background turns green and with correct cc digits
-        $creditLength.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter 13-16 digits'});
+        $zipCodeLength.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: '5 digit Zipcode'});
    }
 });
 // 3-5 digit Cvv message
