@@ -264,6 +264,7 @@ $name.focusout(function(event) {
 });
 //email message: working
 const $email = $('#mail');
+let $emailValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $email.focusout(function(event) {
     let $emailValue = $('#mail').val();
@@ -280,7 +281,27 @@ $email.focusout(function(event) {
    }
 });
 // at least 1 activity box checked message
-// CC card number message
+
+// CC card number 13-16 digits message
+/** delete
+const $creditLength = $('cc-num');
+
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
+        $emailValid = false; //this is the error flag
+        //background turns red and asks for correct email
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+           //background turns green and with correct email
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+*/
 // 5 digit ip code message
 // 3-5 digit Cvv message
 //No empty form message

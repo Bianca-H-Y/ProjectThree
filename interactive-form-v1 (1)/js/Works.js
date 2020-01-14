@@ -33,7 +33,6 @@ For I love JS color options are tomoato, steel blue, and dim grey.***/
 //add select theme message//
 
 const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
-$selectDesignTheme.hide();
 
 // if the first child of id design "select them" is selected show the "please select theme message
 //save: const $emptyTheme = $('#design option').first(); 
@@ -48,7 +47,7 @@ $themeColor.hide();
 $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
-        $selectDesignTheme.show();
+        $('#color option:first-child').hide();
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
         $('option[value="darkslategrey"]').show();
@@ -57,8 +56,8 @@ $('#design').change(function(){
         $('option[value="steelblue"]').hide();
         $('option[value="dimgrey"]') .hide();
      } else if ($(this).val() === 'heart js') {
+        $('#color').eq(1).hide();
         $themeColor.show();
-        $selectDesignTheme.show();
         $('option[value="tomato"]').show();
         $('option[value="steelblue"]').show();
         $('option[value="dimgrey"]').show();
@@ -137,27 +136,153 @@ $('.activities').change(function(event) {
  * When Bitcoin is selected CC and paypal should be hidden. 
  */
 
-//Display credit card section & Hide paypal & Bitcoin//
-//const $creditCard = ('option[value="credit card"]');
-//const $payPal = ('option[value="paypal"]');
-//const $bitCoin = ('option[value="bitcoin"]');
-//const $payment = $('#payment');//
-
+//Hide payment selection:
+$('#payment option:first-child').hide();
+//auto select CC
+$('#payment option[value="credit card"]').attr('selected', true);
+//Hide credit card section & Hide paypal & Bitcoin based on which is picked:
 $('#payment').change(function(){
     if ($(this).val() === 'credit card') {
-        $('option[value="credit card"]').show();
-        $('option[value="paypal"]').hide();
-        $('option[value="bitcoin"]').hide();
+        $('#credit-card').show();
+        $('#paypal').hide();
+        $('#bitcoin').hide();
 //Hide payment selections based on options//
      } else if ($(this).val() === 'paypal') {
-        $('option[value="paypal"]').show();
-        $('option[value="credit card"]').hide();
-        $('option[value="bitcoin"]').hide();
+        $('#paypal').show();
+        $('#credit-card').hide();
+        $('#bitcoin').hide();
     } else if ($(this).val() === 'bitcoin') {
-        $('option[value="bitcoin"]').show();
-        $('option[value="credit card"]').hide();
-        $('option[value="paypal"]').hide();
+        $('#bitcoin').show();
+        $('#credit-card').hide();
+        $('#paypal').hide();
+        
     }
      
 });
-//get value from payment 
+
+/***Form validation: prevent the user from submitting the form if with error notice:
+  * name field is blank
+  * incorrect email format added
+  * at least 1 checkbox under activities
+  * CC section must include a cc #, zip code, and 3 CVV
+  */
+ 
+  /**averi meeting --delete to see
+   * --wrap all the functions I make in the container and submit function
+ target the class container, where the form rest 
+ and keep it from sumitting (135)
+ --then at the very bottom create an if statement that says if there's an error prevent default (220);
+
+ create an error flag right after the container function created
+ false= no errors true=errors
+$error.remove(); 
+//ask averi how she keeps form from submitting 
+//and adding color [enter declared color or hex color]
+averi meeting --delete to see
+
+
+ /***  delete this line
+if ($name.length < 1) {
+    $name.attr'<span class="error">Please enter name</span>')
+}
+/***
+const nameValid =() =>{
+    let $name = $('#name')
+    if (($name).val().length > 0 ) {
+        return false;
+    }else if (($name).val().length === 0 ) {
+        return true;
+        $('#name').after('span class="error">Please Add Namme</span>');
+    }  
+    
+};
+ */
+
+//Start her by declaring variable you will need for this section: name, emails, checked box, cc, zip cvv.
+/***  delete this line
+const
+const
+const
+const
+const
+hex color
+red = #a12b25
+green = #49ab3c
+id name if function
+code
+let eamilvalue = email value jquery
+action
+name backgor
+//get the value of input/select 
+//validation function for email:
+//validation function for 1 checked box under activities
+////validation function for CC if credit card selected
+//validation function for Zip if credit card selected
+//validation function for cvv # if credit card selected
+
+  /***Messages Validation: 
+   * add indication that there's a validation error for
+   * name
+   * email
+   * at least 1 activity box checked
+   * CC card number
+   * zip code
+   * Cvv
+   * empty form 
+   */
+  //validation function for Name:
+//Start with making a function that prompts user to add a name: use a placeholder for message
+
+/***Messages Validation: 
+   * add indication that there's a validation error for
+   * name
+   * email
+   * at least 1 activity box checked
+   * CC card number
+   * zip code
+   * Cvv
+   * empty form 
+   */
+  //Begin with creating messages:
+
+  //name message: blank: working
+  // color choices using hex; google search: red = #750904 and green = #1d5e04
+const $name = $('#name');
+let $nameValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$name.focusout(function(event) {
+    if ($name.val() === "") {
+    $nameValid = false; //this is the error flag
+     //background turns red and asks for a name
+    $name.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your name'});
+    } else { 
+    $nameValid = true;
+     //background turns green with a name
+    $name.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your name'});
+   }
+
+});
+//email message: working
+const $email = $('#mail');
+let $emailValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
+        $emailValid = false; //this is the error flag
+        //background turns red and asks for correct email
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+           //background turns green and with correct email
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+// at least 1 activity box checked message
+
+// CC card number 13-16 digits message
+// 5 digit ip code message
+// 3-5 digit Cvv message
+//No empty form message

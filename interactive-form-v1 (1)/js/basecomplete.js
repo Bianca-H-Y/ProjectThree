@@ -264,6 +264,7 @@ $name.focusout(function(event) {
 });
 //email message: working
 const $email = $('#mail');
+let $emailValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $email.focusout(function(event) {
     let $emailValue = $('#mail').val();
@@ -281,8 +282,10 @@ $email.focusout(function(event) {
 });
 // at least 1 activity box checked message
 
-// CC card number message
-const $email = $('#mail');
+// CC card number 13-16 digits message
+/** delete
+const $creditLength = $('cc-num');
+
 //Create a function that executes each time the event is triggerd: .focusout()
 $email.focusout(function(event) {
     let $emailValue = $('#mail').val();
@@ -298,6 +301,7 @@ $email.focusout(function(event) {
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
 });
+*/
 // 5 digit ip code message
 // 3-5 digit Cvv message
 //No empty form message
