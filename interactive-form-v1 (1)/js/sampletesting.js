@@ -269,6 +269,7 @@ let $emailValid = false;
 $email.focusout(function(event) {
     let $emailValue = $('#mail').val();
     //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
     let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
     if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
@@ -301,23 +302,42 @@ $creditLength.focusout(function(event) {
    }
 });
 
-// 5 digit ip code message
+// 5 digit zip code message
 const $zipCodeLength = $('#zip');
 let $zipCodeValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $zipCodeLength.focusout(function(event) {
     let $zipCodeValue = $('#zip').val();
-    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //Validate the correct layout of a zipcode using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
     let $zipCodeReg = new RegExp('^\\d{5}$'); 
     if (!$zipCodeReg .test($zipCodeValue)) {
         $zipCodeValid  = false; //this is the error flag 
-        //background turns red and asks for correct cc digits
+        //background turns red and asks for correct zipcode digits
         $zipCodeLength.css({backgroundColor: '#750904'}).attr({placeholder: '5 digit Zipcode'});
     } else { 
         $zipCodeValid = true; //zipcode is correct remove attached attribute
-           //background turns green and with correct cc digits
+           //background turns green and with correct zipcode digits
         $zipCodeLength.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: '5 digit Zipcode'});
    }
 });
+
 // 3-5 digit Cvv message
+const $cvvCodeLength = $('#cvv');
+let $cvvCodeValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$cvvCodeLength .focusout(function(event) {
+    let $ccvCodeValue = $('#cvv').val();
+    //Validate the correct layout of a zipcode using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    let $ccvCodeReg = new RegExp('^\\d{3}$'); 
+    if (!$ccvCodeReg.test($ccvCodeValue)) {
+        $cvvCodeValid   = false; //this is the error flag 
+        //background turns red and asks for correct zipcode digits
+        $cvvCodeLength .css({backgroundColor: '#750904'}).attr({placeholder: '3 digit CVV'});
+    } else { 
+        $cvvCodeValid  = true; //zipcode is correct remove attached attribute
+           //background turns green and with correct zipcode digits
+        $cvvCodeLength .css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: '3 digit CVV'});
+   }
+});
 //No empty form message
