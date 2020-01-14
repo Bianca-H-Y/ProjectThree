@@ -166,8 +166,15 @@ $('#payment').change(function(){
   * at least 1 checkbox under activities
   * CC section must include a cc #, zip code, and 3 CVV
   */
+//ask averi how she keeps form from submitting and adding color 
 
-//validation function for Name
+
+
+ /***  delete this line
+if ($name.length < 1) {
+    $name.attr'<span class="error">Please enter name</span>')
+}
+/***
 const nameValid =() =>{
     let $name = $('#name')
     if (($name).val().length > 0 ) {
@@ -175,11 +182,27 @@ const nameValid =() =>{
     }else if (($name).val().length === 0 ) {
         return true;
         $('#name').after('span class="error">Please Add Namme</span>');
-    }
-        
+    }  
     
 };
+ */
 
+//Start her by declaring variable you will need for this section: name, emails, checked box, cc, zip cvv.
+/***  delete this line
+const
+const
+const
+const
+const
+hex color
+red = #a12b25
+green = #49ab3c
+id name if function
+code
+let eamilvalue = email value jquery
+action
+name backgor
+//get the value of input/select 
 //validation function for email:
 //validation function for 1 checked box under activities
 ////validation function for CC if credit card selected
@@ -196,3 +219,23 @@ const nameValid =() =>{
    * Cvv
    * empty form 
    */
+  //validation function for Name:
+//Start with making a function that prompts user to add a name: use a placeholder for message
+
+
+//const $name = ('#name');
+//let $nameValid = false;
+//{placeholder: 'Please enter your name'}
+const $name = $('#name');
+let $nameValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$name.focusout(function(event) {
+    if ($name.length < 1)
+    $nameValid = false;
+    $name.attr({placeholder: 'Please enter your name'});
+    
+//}esle {
+   // if ($name.length > 0) 
+   // $nameValid = true;
+   // $name.css("color", "green").removeAttr({placeholder: 'Please enter your name'});
+});
