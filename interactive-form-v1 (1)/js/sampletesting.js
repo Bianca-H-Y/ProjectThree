@@ -233,28 +233,59 @@ name backgor
   //validation function for Name:
 //Start with making a function that prompts user to add a name: use a placeholder for message
 
+/***Messages Validation: 
+   * add indication that there's a validation error for
+   * name
+   * email
+   * at least 1 activity box checked
+   * CC card number
+   * zip code
+   * Cvv
+   * empty form 
+   */
+  //Begin with creating messages:
 
-//const $name = ('#name');
-//let $nameValid = false;
-//{placeholder: 'Please enter your name'}
+  //name message: blank
+  //red = #750904
+//green = #1d5e04
 const $name = $('#name');
 let $nameValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $name.focusout(function(event) {
     if ($name.val() === "") {
-    $nameValid = false; //this would be the error flag
-    $name.attr({placeholder: 'Please enter your name'});
+    $nameValid = false; //this is the error flag
+    $name.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
-    $name.removeAttr({placeholder: 'Please enter your name'});
+    $name.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your name'});
    }
 
 });
-/**$name.focusout(function(event) {
-    if ($name.length < 1)
-    $nameValid = false;
-    $name.attr({placeholder: 'Please enter your name'});
+//email message
+const $email = $('#mail');
+let $emailValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    if ($email.val() === "") {
+        $emailValid = false; //this is the error flag
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your email'});
+    } else { 
+        $emailValid = true;
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your email'});
+   }
 
-    
+});
+//Skip Check
+//at least 1 activity box checkedmessage
 
-}); */
+/*** 
+if ($('.activities input:checked').length < 1 ) {
+let $oneCheckedBox  = false;
+//$('.activities').attr({placeholder: 'Please enter check one box'});
+$('.activities input:checked').html({placeholder: 'Please enter check one box'});
+};
+*/
+//CC card number message
+//zip code message
+// Cvv message 
+// empty form  message 
