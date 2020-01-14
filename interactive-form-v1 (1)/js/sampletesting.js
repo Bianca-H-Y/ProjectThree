@@ -166,8 +166,19 @@ $('#payment').change(function(){
   * at least 1 checkbox under activities
   * CC section must include a cc #, zip code, and 3 CVV
   */
-//ask averi how she keeps form from submitting and adding color 
+ 
+  /**averi meeting --delete to see
+   * --wrap all the functions I make in the container and submit function
+ target the class container, where the form rest 
+ and keep it from sumitting (135)
+ --then at the very bottom create an if statement that says if there's an error prevent default (220);
 
+ create an error flag right after the container function created
+ false= no errors true=errors
+$error.remove(); 
+//ask averi how she keeps form from submitting 
+//and adding color [enter declared color or hex color]
+averi meeting --delete to see
 
 
  /***  delete this line
@@ -230,12 +241,20 @@ const $name = $('#name');
 let $nameValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $name.focusout(function(event) {
+    if ($name.val() === "") {
+    $nameValid = false; //this would be the error flag
+    $name.attr({placeholder: 'Please enter your name'});
+    } else { 
+    $nameValid = true;
+    $name.removeAttr({placeholder: 'Please enter your name'});
+   }
+
+});
+/**$name.focusout(function(event) {
     if ($name.length < 1)
     $nameValid = false;
     $name.attr({placeholder: 'Please enter your name'});
+
     
-//}esle {
-   // if ($name.length > 0) 
-   // $nameValid = true;
-   // $name.css("color", "green").removeAttr({placeholder: 'Please enter your name'});
-});
+
+}); */
