@@ -245,32 +245,59 @@ name backgor
    */
   //Begin with creating messages:
 
-  //name message: blank
-  //red = #750904
-//green = #1d5e04
+  //name message: blank: working
+  // color choices using hex; google search: red = #750904 and green = #1d5e04
 const $name = $('#name');
 let $nameValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $name.focusout(function(event) {
     if ($name.val() === "") {
     $nameValid = false; //this is the error flag
+     //background turns red and asks for a name
     $name.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
+     //background turns green with a name
     $name.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your name'});
    }
 
 });
-//email message
+//email message: working
 const $email = $('#mail');
-let $emailValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $email.focusout(function(event) {
-    if ($email.val() === "") {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
-        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your email'});
+        //background turns red and asks for correct email
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
     } else { 
         $emailValid = true;
-        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your email'});
+           //background turns green and with correct email
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
 });
+// at least 1 activity box checked message
+
+// CC card number message
+const $email = $('#mail');
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
+        $emailValid = false; //this is the error flag
+        //background turns red and asks for correct email
+        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+           //background turns green and with correct email
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+// 5 digit ip code message
+// 3-5 digit Cvv message
+//No empty form message
