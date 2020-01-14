@@ -273,19 +273,4 @@ $email.focusout(function(event) {
         $emailValid = true;
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your email'});
    }
-
 });
-//Skip Check
-//at least 1 activity box checkedmessage
-
-/*** 
-if ($('.activities input:checked').length < 1 ) {
-let $oneCheckedBox  = false;
-//$('.activities').attr({placeholder: 'Please enter check one box'});
-$('.activities input:checked').html({placeholder: 'Please enter check one box'});
-};
-*/
-//CC card number message
-//zip code message
-// Cvv message 
-// empty form  message 
