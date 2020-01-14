@@ -283,6 +283,8 @@ $email.focusout(function(event) {
 });
 // at least 1 activity box checked message
 
+
+
 // CC card number 13-16 digits message
 const $creditLength = $('#cc-num');
 let $credilValid = false;

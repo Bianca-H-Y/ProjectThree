@@ -281,7 +281,10 @@ $email.focusout(function(event) {
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
 });
+
 // at least 1 activity box checked message
+const $checkBoxLength = $('.activities');
+let $checkBoxlValid = false;
 
 // CC card number 13-16 digits message
 const $creditLength = $('#cc-num');
