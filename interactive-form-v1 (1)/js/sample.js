@@ -158,7 +158,7 @@ $name.focusout(function(event) {
     if ($name.val() === "") {
     $nameValid = false; //this is the error flag
      //background turns red and asks for a name
-    $name.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your name'});
+    $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
      //background turns green with a name
@@ -178,7 +178,7 @@ $email.focusout(function(event) {
     if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
         //background turns red and asks for correct email
-        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
     } else { 
         $emailValid = true;
            //background turns green and with correct email
@@ -200,7 +200,7 @@ $creditLength.focusout(function(event) {
     if (!$creditReg .test($creditValue )) {
         $creditValid = false; //this is the error flag 
         //background turns red and asks for correct cc digits
-        $creditLength.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter 13-16 digits'});
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
     } else { 
         $creditValid = true; //input correct
            //background turns green and with correct cc digits
@@ -219,7 +219,7 @@ $zipCodeLength.focusout(function(event) {
     if (!$zipCodeReg .test($zipCodeValue)) {
         $zipCodeValid  = false; //this is the error flag 
         //background turns red and asks for correct zipcode digits
-        $zipCodeLength.css({backgroundColor: '#750904'}).attr({placeholder: '5 digit Zipcode'});
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
     } else { 
         $zipCodeValid = true; 
         //zipcode is correct remove attached attribute
@@ -239,7 +239,7 @@ $cvvCodeLength .focusout(function(event) {
     if (!$ccvCodeReg.test($ccvCodeValue)) {
         $cvvCodeValid   = false; //this is the error flag 
         //background turns red and asks for correct zipcode digits
-        $cvvCodeLength .css({backgroundColor: '#750904'}).attr({placeholder: '3 digit CVV'});
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
         //CVV is correct remove attached attribute
@@ -285,21 +285,50 @@ $('.container').submit( (e) => {
 */
 $('form').submit( (e) => {
     if ($nameValid === false) {
-        e.preventDefault(); 
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+        e.preventDefault();
     }
     if ($emailValid === false) {
-        e.preventDefault(); 
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+        e.preventDefault();
     }
     if ($creditValid === false) {
-        e.preventDefault(); 
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+        e.preventDefault();
     }
     if ($zipCodeValid === false){
-        e.preventDefault(); 
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+        e.preventDefault();
     }
     if ($cvvCodeValid === false) {
-        e.preventDefault(); 
+        e.preventDefault();
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+    }
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
     }
 });
+
+/*
+$('form').submit( (e) => {
+    if ($nameValid === false) {
+        e.preventDefault().css({backgroundColor: '#f25124'});
+    }
+    if ($emailValid === false) {
+        e.preventDefault().css({backgroundColor: '#f25124'}); 
+    }
+    if ($creditValid === false) {
+        e.preventDefault().css({backgroundColor: '#f25124'}); 
+    }
+    if ($zipCodeValid === false){
+        e.preventDefault().css({backgroundColor: '#f25124'}); 
+    }
+    if ($cvvCodeValid === false) {
+        e.preventDefault().css({backgroundColor: '#f25124'}); 
+    }
+});
+*/
 
 /**
 
