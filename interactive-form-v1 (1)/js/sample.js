@@ -122,6 +122,7 @@ $('.activities').change(function(event) {
            if ($(checkedBox).prop(':checked')) {
                $(checkedBox).attr('disabled');
               $(value).attr('disabled', true);
+              
            } else {
             $(checkedBox).attr('disabled', false);
             $(value).attr('disabled', true);
@@ -259,19 +260,38 @@ $cvvCodeLength .focusout(function(event) {
    }
 });
 
+//TWo steps left:
 
-//No empty form message:prevent the user from submitting the form if with error notice
-// at least 1 activity box checked message
+
+// at least 1 activity box checked message and red
 //best direction
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
-const $errorMessage= $('#error').html('Error: Please select at least one Box');
+const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
 const $errorCheckBoxMissing = $('.activities input:checkbox:checked');
 const $error = $('#error');
-$error.hide();
-let $checkBoxlValid = false;
+//$error.hide() //the error code is showing up so hide until action taken
 
-if ($errorCheckBoxMissing.length < 1) {
-    $checkBoxlValid = false;
-    $error.hide();
+let $checkBoxlValid = false;
+const $checkboxes = $('input:checkbox');
+
+$checkboxes.on('Change', function(e) {
+    if ($errorCheckBoxMissing.length < 1) {
+        $checkBoxlValid = false;
+        $error.show();
+    } else {
+        $checkBoxlValid = true;
+        $error.hide();
+    }
+});
+
+
+//No empty form message:prevent the user from submitting the form if with error notice
+
+
+//The below is testing an event listener with a funtion to make a message:
+/***document.addEventListener("click", function(){
+    document.getElementById("paypal").innerHTML = "Hello World";
 }
+);
+*/
