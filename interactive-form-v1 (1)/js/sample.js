@@ -122,14 +122,19 @@ $('.activities').change(function(event) {
            if ($(checkedBox).prop(':checked')) {
                $(checkedBox).attr('disabled');
               $(value).attr('disabled', true);
+            
               
            } else {
             $(checkedBox).attr('disabled', false);
             $(value).attr('disabled', true);
+            
            }
        }
     });
+    
 });
+
+
 
 /***payment Info section: Display payment sections based on payment options chosen
  * Selct CC by default: display the #credit-card div & hide the "paypal" & "Bitcoin" info.
@@ -270,22 +275,24 @@ const $errorAdd = $('.activities').append($errorDiv);
 const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
 const $errorCheckBoxMissing = $('.activities input:checkbox:checked');
 const $error = $('#error');
-//$error.hide() //the error code is showing up so hide until action taken
-
+//the error code is showing up so hide until action taken
+$errorMessage.hide();
 let $checkBoxlValid = false;
 const $checkboxes = $('input:checkbox');
 
-$checkboxes.on('Change', function(e) {
-    if ($errorCheckBoxMissing.length < 1) {
-        $checkBoxlValid = false;
-        $error.show();
-    } else {
-        $checkBoxlValid = true;
-        $error.hide();
+const $input = $('input[type="checkbox"]');
+$input.change(function() {
+    
+    if ($(this).is(':checked')) {
+        $errorMessage.hide();
+           
+        } else {
+            $errorMessage.show();
+        }
     }
-});
-
-
+    
+    );
+    
 //No empty form message:prevent the user from submitting the form if with error notice
 
 
