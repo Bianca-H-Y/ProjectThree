@@ -273,12 +273,9 @@ $cvvCodeLength .focusout(function(event) {
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
 const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
-const $errorCheckBoxMissing = $('.activities input:checkbox:checked');
 const $error = $('#error');
 //the error code is showing up so hide until action taken
 $errorMessage.hide();
-let $checkBoxlValid = false;
-const $checkboxes = $('input:checkbox');
 
 const $input = $('input[type="checkbox"]');
 $input.change(function() {
@@ -289,9 +286,8 @@ $input.change(function() {
         } else {
             $errorMessage.show();
         }
-    }
+});
     
-    );
     
 //No empty form message:prevent the user from submitting the form if with error notice
 
