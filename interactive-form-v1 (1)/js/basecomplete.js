@@ -7,17 +7,16 @@ let $classTotal= 0;
 //add style sheet successful:https://teamtreehouse.com/library/css-reset-with-normalize//
 
 
-/*When the page loads the cursor is in the 'name' field: 
-https://teamtreehouse.com/library/using-on-for-event-handling 
-target the id 'namel' under input with jQuery .focus() */
+//https://teamtreehouse.com/library/using-on-for-event-handling 
+//target the id 'name' under input with jQuery .focus()
 $('#name').focus();
 
 //use .hide() to hide the HTML add on line 38 of my HTML
     const $otherTitle = $('#other-title'); 
     $('#other-title').hide();
 
-/**Create else if statement that will show the text field if other is selected. 
- * Use .val for input and bind with .change **/
+//Create else if statement that will show the text field if other is selected. 
+
 $('#title').change(function(){
     if ($(this).val() === 'other') {
         $('#other-title').show();
@@ -26,12 +25,8 @@ $('#title').change(function(){
     }
 });
 
-
-/***T-shirt section needs to hide color options until the 2 shirt options are selected. 
- * Then for "JS Puns" color options are cornflower blue, dark slate grey and gold
-For I love JS color options are tomoato, steel blue, and dim grey.***/
+//Tshirt section hide color options until the 2 shirt options are selected//
 //add select theme message//
-
 const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
 
 // if the first child of id design "select them" is selected show the "please select theme message
@@ -67,14 +62,8 @@ $('#design').change(function(){
     
      }
 });
-/*** activity Section 
- * create an element for total activity cost-it's at the top, tested with Dev tools
- * create a change event listener for .acitivties
- * same day and time
- * competing activities no longer disabled is unchecked
- * running total ***/
 
-//event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
+//activity Section:event handler looks for checkbox clicks in activities class with the attribute data-day-and-time//
 
 
 $('.activities').change(function(event) {
@@ -98,7 +87,7 @@ $('.activities').change(function(event) {
     //if ($checkedBox.prop('checked', true)){
     if ($checkedBox.prop('checked')){
     $classTotal = $classTotal + $checkedClassTotalNumber;
-    //add classTotal concatenation with  Total: $ and show total with html jquery/
+    //add classTotal concatenation with  Total: $ and show total with html jquery//
     $('#total').html('Total: $'+ $classTotal);
     } else {
     $classTotal = $classTotal - $checkedClassTotalNumber;
@@ -134,14 +123,6 @@ $('.activities').change(function(event) {
     
 });
 
-
-
-/***payment Info section: Display payment sections based on payment options chosen
- * Selct CC by default: display the #credit-card div & hide the "paypal" & "Bitcoin" info.
- * Paypal should display if paypal is selected and CC and bitcoin hidden.
- * When Bitcoin is selected CC and paypal should be hidden. 
- */
-
 //Hide payment selection:
 $('#payment option:first-child').hide();
 //auto select CC
@@ -167,6 +148,7 @@ $('#payment').change(function(){
 });
 
 //Form validation: 
+
   //name message: blank: working
   // color choices using hex; google search: red = #750904 and green = #1d5e04
 const $name = $('#name');
@@ -176,7 +158,7 @@ $name.focusout(function(event) {
     if ($name.val() === "") {
     $nameValid = false; //this is the error flag
      //background turns red and asks for a name
-    $name.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter your name'});
+    $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
      //background turns green with a name
@@ -196,7 +178,7 @@ $email.focusout(function(event) {
     if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
         //background turns red and asks for correct email
-        $email.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter a full email'});
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
     } else { 
         $emailValid = true;
            //background turns green and with correct email
@@ -209,18 +191,18 @@ $email.focusout(function(event) {
 
 // CC card number 13-16 digits message
 const $creditLength = $('#cc-num');
-let $credilValid = false;
+let $creditValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $creditLength.focusout(function(event) {
     let $creditValue = $('#cc-num').val();
-    //Validate the correct layout of a CC using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //Validate the correct layout of a CC using text and test
     let $creditReg = new RegExp('^\\d{13,16}$'); 
     if (!$creditReg .test($creditValue )) {
-        $credilValid = false; //this is the error flag 
+        $creditValid = false; //this is the error flag 
         //background turns red and asks for correct cc digits
-        $creditLength.css({backgroundColor: '#750904'}).attr({placeholder: 'Please enter 13-16 digits'});
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
     } else { 
-        $credilValid = true; //input correct
+        $creditValid = true; //input correct
            //background turns green and with correct cc digits
         $creditLength.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter 13-16 digits'});
    }
@@ -232,14 +214,15 @@ let $zipCodeValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $zipCodeLength.focusout(function(event) {
     let $zipCodeValue = $('#zip').val();
-    //Validate the correct layout of a zipcode using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //Validate the correct layout of a zipcode using text and test
     let $zipCodeReg = new RegExp('^\\d{5}$'); 
     if (!$zipCodeReg .test($zipCodeValue)) {
         $zipCodeValid  = false; //this is the error flag 
         //background turns red and asks for correct zipcode digits
-        $zipCodeLength.css({backgroundColor: '#750904'}).attr({placeholder: '5 digit Zipcode'});
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
     } else { 
-        $zipCodeValid = true; //zipcode is correct remove attached attribute
+        $zipCodeValid = true; 
+        //zipcode is correct remove attached attribute
            //background turns green and with correct zipcode digits
         $zipCodeLength.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: '5 digit Zipcode'});
    }
@@ -251,50 +234,97 @@ let $cvvCodeValid = false;
 //Create a function that executes each time the event is triggerd: .focusout()
 $cvvCodeLength .focusout(function(event) {
     let $ccvCodeValue = $('#cvv').val();
-    //Validate the correct layout of a zipcode using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    //Validate the correct layout of a zipcode using text and test
     let $ccvCodeReg = new RegExp('^\\d{3}$'); 
     if (!$ccvCodeReg.test($ccvCodeValue)) {
         $cvvCodeValid   = false; //this is the error flag 
         //background turns red and asks for correct zipcode digits
-        $cvvCodeLength .css({backgroundColor: '#750904'}).attr({placeholder: '3 digit CVV'});
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
-        $cvvCodeValid  = true; //zipcode is correct remove attached attribute
-           //background turns green and with correct zipcode digits
+        $cvvCodeValid  = true;
+        //CVV is correct remove attached attribute
+        //background turns green and with correct zipcode digits
         $cvvCodeLength .css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: '3 digit CVV'});
    }
 });
 
-//TWo steps left:
 
 
-// at least 1 activity box checked message and red
-//best direction
+//at least 1 activity box checked message and red
+
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
 const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
 const $error = $('#error');
 //the error code is showing up so hide until action taken
 $errorMessage.hide();
-
+let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
 $input.change(function() {
     
     if ($(this).is(':checked')) {
         $errorMessage.hide();
-           
+        $errorCheckBox = false;
         } else {
-            $errorMessage.show();
+        $errorMessage.show();
+        $errorCheckBox = true;
         }
 });
-    
-    
-//No empty form message:prevent the user from submitting the form if with error notice
+
+//Stop page from reloading if form not filled and add warnings
+$('form').submit( (e) => {
+
+    if ($nameValid === false) {
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+        e.preventDefault();
+    } else { 
+        $nameValid = true;
+        $this.unbind('submit').submit();
+    }
 
 
-//The below is testing an event listener with a funtion to make a message:
-/***document.addEventListener("click", function(){
-    document.getElementById("paypal").innerHTML = "Hello World";
-}
-);
-*/
+    if ($emailValid === false) {
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+        e.preventDefault();
+    } else { 
+        $emailValid  = true;
+        $this.unbind('submit').submit();
+    }
+
+    if ($creditValid === false) {
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+        e.preventDefault();
+    } else { 
+        $creditValid  = true;
+        $this.unbind('submit').submit();
+    }
+
+
+    if ($zipCodeValid === false){
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+        e.preventDefault();
+    } else { 
+        $zipCodeValid  = true;
+        $this.unbind('submit').submit();
+    }
+
+
+    if ($cvvCodeValid === false) {
+        e.preventDefault();
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+    } else { 
+        $cvvCodeValid  = true;
+        $this.unbind('submit').submit();
+    }
+
+
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
+   } else { 
+   
+$this.unbind('submit').submit();
+   }
+
+});
+

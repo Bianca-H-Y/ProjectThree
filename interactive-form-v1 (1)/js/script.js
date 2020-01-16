@@ -266,74 +266,64 @@ $input.change(function() {
         $errorMessage.hide();
         $errorCheckBox = false;
         } else {
-            $errorMessage.show();
+        $errorMessage.show();
         $errorCheckBox = true;
         }
 });
 
-/*
-$('.container').submit( (e) => {
-    const $sumbit = $(".container");
-    const $errorFormDiv = $('<div id="formerror"></div>');
-    const $errorForm = $('.container').append($errorFormDiv);
-    const $formError = $('#formerror').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
-    $submit.preventDefault();
-    $formError.show();
-    console.log($formError)
-    //will actuallay first hide since the diiv should show auto; then creat an if for when to show and an if for when to not
-});
-*/
+//Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
+
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();
+    } else { 
+        $nameValid = true;
+        $this.unbind('submit').submit();
     }
+
+
     if ($emailValid === false) {
         $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
         e.preventDefault();
+    } else { 
+        $emailValid  = true;
+        $this.unbind('submit').submit();
     }
+
     if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
+    } else { 
+        $creditValid  = true;
+        $this.unbind('submit').submit();
     }
+
+
     if ($zipCodeValid === false){
         $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
         e.preventDefault();
+    } else { 
+        $zipCodeValid  = true;
+        $this.unbind('submit').submit();
     }
+
+
     if ($cvvCodeValid === false) {
         e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+    } else { 
+        $cvvCodeValid  = true;
+        $this.unbind('submit').submit();
     }
+
+
     if ($errorCheckBox === false) {
         $errorMessage.show();
         e.preventDefault();
-    }
+   } else { 
+   
+$this.unbind('submit').submit();
+   }
+
 });
-
-/*
-$('form').submit( (e) => {
-    if ($nameValid === false) {
-        e.preventDefault().css({backgroundColor: '#f25124'});
-    }
-    if ($emailValid === false) {
-        e.preventDefault().css({backgroundColor: '#f25124'}); 
-    }
-    if ($creditValid === false) {
-        e.preventDefault().css({backgroundColor: '#f25124'}); 
-    }
-    if ($zipCodeValid === false){
-        e.preventDefault().css({backgroundColor: '#f25124'}); 
-    }
-    if ($cvvCodeValid === false) {
-        e.preventDefault().css({backgroundColor: '#f25124'}); 
-    }
-});
-*/
-
-/**
-
-
-
-    //will actuallay first hide since the diiv should show auto; then creat an if for when to show and an if for when to not
-});
- */
