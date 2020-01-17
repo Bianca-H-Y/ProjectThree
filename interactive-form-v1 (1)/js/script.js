@@ -285,10 +285,8 @@ $('form').submit( (e) => {
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();
-    } else { 
-        $nameValid = true;
-        $this.unbind('submit').submit();
     }
+  
 
 
     if ($emailValid === false) {
