@@ -127,6 +127,14 @@ $('.activities').change(function(event) {
 $('#payment option:first-child').hide();
 //auto select CC
 $('#payment option[value="credit card"]').attr('selected', true);
+
+$('#payment').is(function(){
+    if ($(this).val() === 'credit card') {
+        $('#credit-card').show();
+        $('#paypal').hide();
+        $('#bitcoin').hide();
+    }
+});
 //Hide credit card section & Hide paypal & Bitcoin based on which is picked:
 $('#payment').change(function(){
     if ($(this).val() === 'credit card') {
