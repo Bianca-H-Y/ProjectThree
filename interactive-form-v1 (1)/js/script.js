@@ -43,6 +43,7 @@ $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
         $('#color option:first-child').hide();
+        $('#color').val("cornflowerblue", "darkslategrey", "gold");
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
         $('option[value="darkslategrey"]').show();
@@ -51,7 +52,7 @@ $('#design').change(function(){
         $('option[value="steelblue"]').hide();
         $('option[value="dimgrey"]') .hide();
      } else if ($(this).val() === 'heart js') {
-        $('#color').eq(1).hide();
+        $('#color').val("tomato", "steelblue", "dimgrey");
         $themeColor.show();
         $('option[value="tomato"]').show();
         $('option[value="steelblue"]').show();
