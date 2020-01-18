@@ -109,9 +109,9 @@ $('.activities').change(function(event) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
-           if ($(checkedBox).prop(':checked')) {
-               $(checkedBox).attr('disabled');
-              $(value).attr('disabled', true);
+         if ($(checkedBox).prop(':checked', true)) {
+               $(checkedBox).attr('disabled', false);
+               $(value).attr('disabled', true);
             
               
            } else {
@@ -119,6 +119,8 @@ $('.activities').change(function(event) {
             $(value).attr('disabled', true);
             
            }
+       } else if ($(checkedBox).prop(':checked', false)) {
+       $(value).attr('disabled', false);
        }
     });
     
