@@ -109,19 +109,17 @@ $('.activities').change(function(event) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
-         if ($(checkedBox).prop(':checked', true)) {
-               $(checkedBox).attr('disabled', false);
-               $(value).attr('disabled', true);
-            
-              
-           } else {
-            $(checkedBox).attr('disabled', false);
-            $(value).attr('disabled', true);
-            
-           }
-       } else if ($(checkedBox).prop(':checked', false)) {
-       $(value).attr('disabled', false);
-       }
+        if ($(checkedBox).prop('checked')) {
+            $(checkedBox).attr('disabled');
+           $(value).attr('disabled', true);
+         
+           
+        } else {
+         $(checkedBox).attr('disabled', false);
+         $(value).attr('disabled', false);
+         
+        }
+    }
     });
     
 });
@@ -265,7 +263,7 @@ $cvvCodeLength .focusout(function(event) {
 
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
-const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
+const $errorMessage= $('#error').html('Please be sure at least one box is checked.').css({backgroundColor: '#f25124'});
 const $error = $('#error');
 //the error code is showing up so hide until action taken
 $errorMessage.hide();
