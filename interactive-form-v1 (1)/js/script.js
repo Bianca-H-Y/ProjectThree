@@ -289,7 +289,8 @@ let $payBitcoin = false;
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();}
-  
+        else { 
+            $nameValid  = true;}
 
 
     if ($emailValid === false) {
@@ -305,19 +306,18 @@ let $payBitcoin = false;
         e.preventDefault();
     } else { 
         $creditValid  = true;
-        //$this.unbind('submit').submit();
     }
+
     if ($payPalValid === false) {
         e.preventDefault();
     } else { 
         $payPalValid  = true;
-        (($this).unbind('submit').submit());
     }
+
     if ($payBitcoin === false) {
         e.preventDefault();
     } else { 
         $payBitcoin = true;
-        (($this).unbind('submit').submit());
     }
 
 
@@ -342,7 +342,7 @@ let $payBitcoin = false;
         e.preventDefault();
    } else { 
     $errorCheckBox = true;
-    $('form').unbind('submit').submit();
+   $('form').unbind('submit').submit();
    } 
  
    
