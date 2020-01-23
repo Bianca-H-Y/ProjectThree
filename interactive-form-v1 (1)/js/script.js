@@ -334,6 +334,7 @@ let $payBitcoin = false;
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
+
     }
 
 
@@ -342,14 +343,25 @@ let $payBitcoin = false;
         e.preventDefault();
    } else { 
     $errorCheckBox = true;
-    $('form').unbind('submit').submit();
+    //$this.unbind('submit').submit();
+//
    } 
- 
+   //$('#payment').change(function(){
+    
+        //e.preventDefault();
+   // } else { 
+   // $('#payment').val() === 'paypal', true;
+//}
+
+//
+
    
 
 });
 
-
-
-    
-
+/** 
+if ($('#payment').val() === 'paypal'){
+     e.preventDefault();
+    $('form').unbind('submit').submit();
+};
+*/
