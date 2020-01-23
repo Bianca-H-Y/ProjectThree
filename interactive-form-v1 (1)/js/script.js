@@ -201,6 +201,7 @@ $email.focusout(function(event) {
 // CC card number 13-16 digits message
 const $creditLength = $('#cc-num');
 let $creditValid = false;
+
 //Create a function that executes each time the event is triggerd: .focusout()
 $creditLength.focusout(function(event) {
     let $creditValue = $('#cc-num').val();
@@ -271,18 +272,20 @@ let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
 $input.change(function() {
     
-    if ($(this).is(':checked')) {
-        $errorMessage.hide();
+    if ($(this).is('checked' === 1 )) {
+        $errorMessage.show();
         $errorCheckBox = false;
         } else {
-        $errorMessage.show();
+        $errorMessage.hide();
         $errorCheckBox = true;
-        }
+        }  
+    
 });
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
-
+let $payPalValid = false;
+let $payBitcoin = false;
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();}
@@ -294,7 +297,7 @@ $('form').submit( (e) => {
         e.preventDefault();
     } else { 
         $emailValid  = true;
-        $this.unbind('submit').submit();
+       // $this.unbind('submit').submit();//testing submit-working 
     }
 
     if ($creditValid === false) {
@@ -302,7 +305,19 @@ $('form').submit( (e) => {
         e.preventDefault();
     } else { 
         $creditValid  = true;
-        $this.unbind('submit').submit();
+        //$this.unbind('submit').submit();
+    }
+    if ($payPalValid === false) {
+        e.preventDefault();
+    } else { 
+        $payPalValid  = true;
+        (($this).unbind('submit').submit());
+    }
+    if ($payBitcoin === false) {
+        e.preventDefault();
+    } else { 
+        $payBitcoin = true;
+        (($this).unbind('submit').submit());
     }
 
 
@@ -311,7 +326,6 @@ $('form').submit( (e) => {
         e.preventDefault();
     } else { 
         $zipCodeValid  = true;
-        $this.unbind('submit').submit();
     }
 
 
@@ -320,7 +334,6 @@ $('form').submit( (e) => {
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
-        $this.unbind('submit').submit();
     }
 
 
@@ -328,8 +341,15 @@ $('form').submit( (e) => {
         $errorMessage.show();
         e.preventDefault();
    } else { 
+    $errorCheckBox = true;
+    $('form').unbind('submit').submit();
+   } 
+ 
    
-$this.unbind('submit').submit();
-   }
 
 });
+
+
+
+    
+
