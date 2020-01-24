@@ -334,7 +334,6 @@ $('#payment').is(function(){
             $zipCodeValid  = true;
         }
     
-    
         if ($cvvCodeValid === false) {
             e.preventDefault();
             $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
@@ -345,6 +344,7 @@ $('#payment').is(function(){
    
 } 
 if ($('select option[value="paypal"]').attr('selected', true)) { 
+    $('form').submit
     return true; 
 }
     if  ($('select option[value="bitcoin"]').attr('selected',true)); {
