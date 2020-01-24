@@ -279,35 +279,42 @@ $input.change(function() {
         $errorMessage.hide();
         $errorCheckBox = true;
         }  
+       
+    
     
 });
 
+if ($errorCheckBox === false) {
+    $errorMessage.show();
+    //e.preventDefault();
+} else { 
+$errorCheckBox = true;
+} 
+
 //Stop page from reloading if form not filled and add warnings
-$('form').submit( (e) => {
+//$('form').submit( (e) => {
+
+//Name validation
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
-        e.preventDefault();}
-        else { 
-            $nameValid  = true;}
+        //e.preventDefault();
+    }else { 
+            $nameValid  = true;
+        };
 
-
+//email validation
     if ($emailValid === false) {
         $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
-        e.preventDefault();
+        //e.preventDefault();
     } else { 
         $emailValid  = true;
        
     }
 
-    if ($errorCheckBox === false) {
-        $errorMessage.show();
-        e.preventDefault();
-   } else { 
-    $errorCheckBox = true;
-   } 
+//checkbox validation
+   
 
-
-});
+//});
 
 
 //Attempting to say if payment option is Credit card then validated these sections: working
