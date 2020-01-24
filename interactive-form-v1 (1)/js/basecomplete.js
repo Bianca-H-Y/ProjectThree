@@ -299,15 +299,6 @@ $('form').submit( (e) => {
        
     }
 
-
-    if ($cvvCodeValid === false) {
-        e.preventDefault();
-        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
-    } else { 
-        $cvvCodeValid  = true;
-    }
-
-
     if ($errorCheckBox === false) {
         $errorMessage.show();
         e.preventDefault();
@@ -319,12 +310,12 @@ $('form').submit( (e) => {
 });
 
 
-
+//Attempting to say if payment option is Credit card then validated these sections: working
 $('#payment').is(function(){
     if ($('#payment option[value="credit card"]').attr('selected', true));{
         if ($creditValid === false) {
             $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-            e.preventDefault();
+            event.preventDefault();
         } else { 
             $creditValid  = true;
         } if ($zipCodeValid === false){
@@ -344,7 +335,6 @@ $('#payment').is(function(){
    
 } 
 if ($('select option[value="paypal"]').attr('selected', true)) { 
-    $('form').submit
     return true; 
 }
     if  ($('select option[value="bitcoin"]').attr('selected',true)); {
