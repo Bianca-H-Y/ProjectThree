@@ -335,22 +335,6 @@ $('form').submit( (e) => {
    
 
 });
-/** 
-$('form').submit( (e) => {
-    let $payPalValid = true;
-    let $payBitcoin = true;
- if ($payPalValid === false) {
-        //e.preventDefault();
-    } else { 
-        $payPalValid  = true;
-  }
 
-   if ($payBitcoin === false) {
-      e.preventDefault();
- } else { 
-        $payBitcoin = true;
-    }
-});
-*/
     
 
