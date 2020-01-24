@@ -284,8 +284,7 @@ $input.change(function() {
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
-let $payPalValid = false;
-let $payBitcoin = false;
+
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();}
@@ -298,7 +297,7 @@ let $payBitcoin = false;
         e.preventDefault();
     } else { 
         $emailValid  = true;
-       // $this.unbind('submit').submit();//testing submit-working 
+       
     }
 
     if ($creditValid === false) {
@@ -306,18 +305,6 @@ let $payBitcoin = false;
         e.preventDefault();
     } else { 
         $creditValid  = true;
-    }
-
-    if ($payPalValid === false) {
-        e.preventDefault();
-    } else { 
-        $payPalValid  = true;
-    }
-
-    if ($payBitcoin === false) {
-        e.preventDefault();
-    } else { 
-        $payBitcoin = true;
     }
 
 
@@ -341,15 +328,29 @@ let $payBitcoin = false;
         $errorMessage.show();
         e.preventDefault();
    } else { 
-    $errorCheckBox = true;
-   $('form').unbind('submit').submit();
+       return $errorCheckBox = true;
+
    } 
  
    
 
 });
+/** 
+$('form').submit( (e) => {
+    let $payPalValid = true;
+    let $payBitcoin = true;
+ if ($payPalValid === false) {
+        //e.preventDefault();
+    } else { 
+        $payPalValid  = true;
+  }
 
-
-
+   if ($payBitcoin === false) {
+      e.preventDefault();
+ } else { 
+        $payBitcoin = true;
+    }
+});
+*/
     
 

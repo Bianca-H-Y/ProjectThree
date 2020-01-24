@@ -43,6 +43,7 @@ $('#design').change(function(){
     const $designTheme =  $('#design');
     if ($(this).val() === 'js puns') {
         $('#color option:first-child').hide();
+        $('#color').val("cornflowerblue", "darkslategrey", "gold");
         $themeColor.show();
         $('option[value="cornflowerblue"]').show();
         $('option[value="darkslategrey"]').show();
@@ -51,7 +52,7 @@ $('#design').change(function(){
         $('option[value="steelblue"]').hide();
         $('option[value="dimgrey"]') .hide();
      } else if ($(this).val() === 'heart js') {
-        $('#color').eq(1).hide();
+        $('#color').val("tomato", "steelblue", "dimgrey");
         $themeColor.show();
         $('option[value="tomato"]').show();
         $('option[value="steelblue"]').show();
@@ -108,17 +109,17 @@ $('.activities').change(function(event) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
-           if ($(checkedBox).prop('checked')) {
-               $(checkedBox).attr('disabled');
-              $(value).attr('disabled', true);
-            
-              
-           } else {
-            $(checkedBox).attr('disabled', false);
-            $(value).attr('disabled', false);
-            
-           }
-       }
+        if ($(checkedBox).prop('checked')) {
+            $(checkedBox).attr('disabled');
+           $(value).attr('disabled', true);
+         
+           
+        } else {
+         $(checkedBox).attr('disabled', false);
+         $(value).attr('disabled', false);
+         
+        }
+    }
     });
     
 });
@@ -127,6 +128,14 @@ $('.activities').change(function(event) {
 $('#payment option:first-child').hide();
 //auto select CC
 $('#payment option[value="credit card"]').attr('selected', true);
+
+$('#payment').is(function(){
+    if ($(this).val() === 'credit card') {
+        $('#credit-card').show();
+        $('#paypal').hide();
+        $('#bitcoin').hide();
+    }
+});
 //Hide credit card section & Hide paypal & Bitcoin based on which is picked:
 $('#payment').change(function(){
     if ($(this).val() === 'credit card') {
@@ -192,6 +201,7 @@ $email.focusout(function(event) {
 // CC card number 13-16 digits message
 const $creditLength = $('#cc-num');
 let $creditValid = false;
+
 //Create a function that executes each time the event is triggerd: .focusout()
 $creditLength.focusout(function(event) {
     let $creditValue = $('#cc-num').val();
@@ -254,7 +264,7 @@ $cvvCodeLength .focusout(function(event) {
 
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
-const $errorMessage= $('#error').html('Error: Please select at least one Box').css({backgroundColor: '#f25124'});
+const $errorMessage= $('#error').html('Please be sure at least one box is checked.').css({backgroundColor: '#f25124'});
 const $error = $('#error');
 //the error code is showing up so hide until action taken
 $errorMessage.hide();
@@ -262,25 +272,23 @@ let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
 $input.change(function() {
     
-    if ($(this).is(':checked')) {
-        $errorMessage.hide();
+    if ($(this).is('checked' === 1 )) {
+        $errorMessage.show();
         $errorCheckBox = false;
         } else {
-        $errorMessage.show();
+        $errorMessage.hide();
         $errorCheckBox = true;
-        }
+        }  
+    
 });
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
-
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
-        e.preventDefault();
-    } else { 
-        $nameValid = true;
-        $this.unbind('submit').submit();
-    }
+        e.preventDefault();}
+        else { 
+            $nameValid  = true;}
 
 
     if ($emailValid === false) {
@@ -288,24 +296,7 @@ $('form').submit( (e) => {
         e.preventDefault();
     } else { 
         $emailValid  = true;
-        $this.unbind('submit').submit();
-    }
-
-    if ($creditValid === false) {
-        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-        e.preventDefault();
-    } else { 
-        $creditValid  = true;
-        $this.unbind('submit').submit();
-    }
-
-
-    if ($zipCodeValid === false){
-        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
-        e.preventDefault();
-    } else { 
-        $zipCodeValid  = true;
-        $this.unbind('submit').submit();
+       
     }
 
 
@@ -314,7 +305,6 @@ $('form').submit( (e) => {
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
-        $this.unbind('submit').submit();
     }
 
 
@@ -322,9 +312,45 @@ $('form').submit( (e) => {
         $errorMessage.show();
         e.preventDefault();
    } else { 
-   
-$this.unbind('submit').submit();
-   }
+    $errorCheckBox = true;
+   } 
+
 
 });
 
+
+
+$('#payment').is(function(){
+    if ($('#payment option[value="credit card"]').attr('selected', true));{
+        if ($creditValid === false) {
+            $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+            e.preventDefault();
+        } else { 
+            $creditValid  = true;
+        } if ($zipCodeValid === false){
+            $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+            e.preventDefault();
+        } else { 
+            $zipCodeValid  = true;
+        }
+    
+    
+        if ($cvvCodeValid === false) {
+            e.preventDefault();
+            $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+        } else { 
+            $cvvCodeValid  = true;
+        }
+    
+   
+} 
+if ($('select option[value="paypal"]').attr('selected', true)) { 
+    return true; 
+}
+    if  ($('select option[value="bitcoin"]').attr('selected',true)); {
+        return true; 
+     
+    }
+
+
+});
