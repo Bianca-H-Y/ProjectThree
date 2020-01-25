@@ -103,11 +103,21 @@ $('.activities').change(function(event) {
 //target activity input elements--catch conflicting checkboxes//
 $('.activities').change(function(event) {
     let checkedBox = event.target;
+    //variable for checkboxes with the attribute 'data-day-and-time'
     const dateTimeSame = $(checkedBox).attr('data-day-and-time');
+    //variable for the input type checkbox
     const input = $('input[type="checkbox"]');
    input.each(function(index, value) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
+       /** Code Below:
+        * if a checkedbox w/ attribute 'data-day-time (dateTimeSame) 
+        * is equal (===) to any otherbox checkbox with the same attr 'data-day-time(heckedTime)
+        * AND  element with exact specified attribute (checkedBox.NAME) and not the same of any value:
+        * then if that box is checked and any attr don't conflict then allow
+        * otherwise dont allow selections
+       */
+    
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
         if ($(checkedBox).prop('checked')) {
             $(checkedBox).attr('disabled');
@@ -270,26 +280,24 @@ const $error = $('#error');
 $errorMessage.hide();
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
-
+//working!!! Steps on what code does below:
+//I'm looking for a change in the acitivities class
 $('.activities').change(function(event) {
-
+//if the checkbox input from the user lead to a checkedbox then $errormessage is hidden and set to true so form can submit
     if (($input).is(':checked')){
         $errorMessage.hide();
         $errorCheckBox = true;
-        
-        
-       // if a checkbox are checked then don't display the warning
+        // ABOVE: if a checkbox IS checked then don't display the warning
        
         } else {
+            //otherwise is a box isn't checked go back to false/incorrect/submit blocked and show the error message.
             $errorMessage.show();
-
-        $errorCheckBox = false;
-        
-        // if a checkbox is NOT checked display the warning
+            $errorCheckBox = false;
+        // ABOVE:if a checkbox is NOT checked display the warning
         } 
     });
-    console.log(typeof $errorMessage);
-//console.log(checkBoxValidate);
+//console.log(typeof $errorMessage);
+//console.log(checkBoxValidate);-deleted/corrected
 
 
 /** 
