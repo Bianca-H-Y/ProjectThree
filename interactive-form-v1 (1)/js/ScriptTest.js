@@ -264,67 +264,56 @@ $cvvCodeLength .focusout(function(event) {
 
 const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
-//I created an error id to append to the activities class for the activity section
-//Below: the variable id of error
-const $error = $('#error');
-// below I add message and set it to red
 const $errorMessage= $('#error').html('Please be sure at least one box is checked.').css({backgroundColor: '#f25124'});
-//since the error message is appended it shows--so I have to hide it to suppress it
+const $error = $('#error');
+//the error code is showing up so hide until action taken
 $errorMessage.hide();
-
-//setting this variable to false so the form isn't correct until user makes changes
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
-/** 
-//handler looking for changes
-$input.change(function(event) {
-    //I'm not sure why this doesn't work per jquery:https://api.jquery.com/checkbox-selector/
-    if (($input).prop('checked')) {
+
+$('.activities').change(function(event) {
+
+    if (($input).is(':checked')){
         $errorMessage.hide();
-     } else {
+        $errorCheckBox = true;
+        
+        
+       // if a checkbox are checked then don't display the warning
+       
+        } else {
             $errorMessage.show();
-           
+
+        $errorCheckBox = false;
+        
+        // if a checkbox is NOT checked display the warning
+        } 
+    });
+    console.log(typeof $errorMessage);
+//console.log(checkBoxValidate);
+
+
+/** 
+
+$input.change(function() {
+    
+    if ($(this).is('checked' === 1 )) {
+        $errorMessage.show();
+        $errorCheckBox = false;
+        } else {
+        $errorMessage.hide();
+        $errorCheckBox = true;
         }  
-        //need code that adds for when a user checks the box and then unchecks
     
 });
- console.log($errorCheckBox);
- console.log(typeof "checked");
- */
-/**
- * I appended an error id to the activites class of the HTML so I could use .html to display an error message:'Please be sure at least one box is checked.'
- * I then add .css to label the warning in red
- * What my goal was:
- * to show my message when a user tried to submit the form--I have that handled in the submit handler
- * I also need a validation that is specific to when a box is checked or not checked--that is what is on line 275-286
-  I'm trying to say for my function:
+*/
 
- * What to do if a box is checked function
- * if  a box is checked {
- * if the box checked is true/correct
- * * and hide the errormessage
- * } else if (any check box is checked) {
- * if a box is checked return false/not correct 
- *  show the errormessage appended to activites class
- * }
- * I think I also need to add an else for if a box is unchecked after being checked
- *  -I missed the need for this, but am not sure if errors are the cause of this issue.
- * 
- * 
- * }
- * 
- * 
- */
-
-
-
-//Stop page from reloading if form not filled and add warnings: This is the validation I want to happen at submit
-
+//Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
-        e.preventDefault();}
+        e.preventDefault();
+    }
         else { 
             $nameValid  = true;}
 
@@ -340,11 +329,9 @@ $('form').submit( (e) => {
     if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
-    } else if ($creditValid === true) { 
+    } else { 
         $creditValid  = true;
-    } else {
-
-    };
+    }
 
 
     if ($zipCodeValid === false){
@@ -356,24 +343,24 @@ $('form').submit( (e) => {
 
 
     if ($cvvCodeValid === false) {
-        //e.preventDefault();
+        e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
     }
 
 
-   // if ($errorCheckBox === false) {
-     //   $errorMessage.show();
-       // e.preventDefault();
-   //} else { 
-       //return $errorCheckBox = true;
-    //}
-   
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
+   } else { 
+       return $errorCheckBox = true;
 
+   } 
+ 
    
 
 });
-//console.log($errorCheckBox);
 
+    
 

@@ -153,4 +153,106 @@ $('#payment').change(function(){
     }
      
 });
-//Validation to follow
+//Validation to follow:
+
+  //name message: 
+  //blank: working
+  // color choices using hex; google search: red = #750904 and green = #1d5e04
+  const $name = $('#name');
+  let $nameValid = false;
+  //Create a function that executes each time the event is triggerd: .focusout()
+  $name.focusout(function(event) {
+      if ($name.val() === "") {
+      $nameValid = false; //this is the error flag
+       //background turns red and asks for a name
+      $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+      } else { 
+      $nameValid = true;
+       //background turns green with a name
+      $name.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter your name'});
+     }
+  
+  });
+
+  //email message: working
+const $email = $('#mail');
+let $emailValid = false;
+//Create a function that executes each time the event is triggerd: .focusout()
+$email.focusout(function(event) {
+    let $emailValue = $('#mail').val();
+    //Validate the correct layout of an e-mail using text and test from http://regexpal.com.s3-website-us-east-1.amazonaws.com/?_ga=2.234780446.103822050.1497920061-848749570.1493938714
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    let $emailReg = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{3,7}$');
+    if (!$emailReg.test($emailValue)) {
+        $emailValid = false; //this is the error flag
+        //background turns red and asks for correct email
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+    } else { 
+        $emailValid = true;
+           //background turns green and with correct email
+        $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
+   }
+});
+
+
+//added on it's own this is still allowing submit
+$('form').submit( (e) => {
+
+    if ($nameValid === true) {
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+       // e.preventDefault();
+    }else { 
+            $nameValid  = false;
+        }
+
+
+    if ($emailValid === true) {
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+       // e.preventDefault();
+    } else { 
+        $emailValid  = false
+       
+    } e.preventDefault();
+    
+
+    //if ($creditValid === false) {
+       // $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+      //  e.preventDefault();
+    //} else { 
+     //   $creditValid  = true;
+   // }
+
+
+    //if ($zipCodeValid === false){
+      //  $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+       // e.preventDefault();
+   // } else { 
+     //   $zipCodeValid  = true;
+    //}
+
+
+   // if ($cvvCodeValid === false) {
+      //  e.preventDefault();
+       // $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+   // } else { 
+       // $cvvCodeValid  = true;
+   // }
+
+
+    //if ($errorCheckBox === false) {
+      //  $errorMessage.show();
+       // e.preventDefault();
+   //} else { 
+      // return $errorCheckBox = true;
+
+  // } 
+ 
+   
+
+});
+console.log($nameValid);
+console.log($emailValid);
+//console.log($creditValid);
+//console.log($zipCodeValid);
+//console.log($cvvCodeValid );
+//console.log($errorCheckBox );

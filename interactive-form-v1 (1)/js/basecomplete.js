@@ -335,6 +335,24 @@ $('form').submit( (e) => {
    
 
 });
-
+const $errorDiv = $('<div id="error"></div>');
+const $errorAdd = $('.activities').append($errorDiv);
+const $errorMessage= $('#error').html('Please be sure at least one box is checked.').css({backgroundColor: '#f25124'});
+const $error = $('#error');
+//the error code is showing up so hide until action taken
+//$errorMessage.hide();
+let $errorCheckBox = false;
+const $input = $('input[type="checkbox"]');
+$input.change(function() {
+    
+    if ($(this).is('checked' === 1 )) {
+        $errorMessage.show();
+        $errorCheckBox = false;
+        } else {
+        $errorMessage.hide();
+        $errorCheckBox = true;
+        }  
+    
+});
     
 
