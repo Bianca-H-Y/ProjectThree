@@ -283,14 +283,14 @@ const $input = $('input[type="checkbox"]');
 //working!!! Steps on what code does below:
 //I'm looking for a change in the acitivities class
 $('.activities').change(function(event) {
-//if the checkbox input from the user lead to a checkedbox then $errormessage is hidden and set to true so form can submit
+//if the checkbox input from the user leads to a checkedbox then $errormessage is hidden and set to true so form can submit
     if (($input).is(':checked')){
         $errorMessage.hide();
         $errorCheckBox = true;
         // ABOVE: if a checkbox IS checked then don't display the warning
        
         } else {
-            //otherwise is a box isn't checked go back to false/incorrect/submit blocked and show the error message.
+            //otherwise if a box isn't checked go back to false/incorrect/submit blocked and show the error message.
             $errorMessage.show();
             $errorCheckBox = false;
         // ABOVE:if a checkbox is NOT checked display the warning
@@ -299,21 +299,6 @@ $('.activities').change(function(event) {
 //console.log(typeof $errorMessage);
 //console.log(checkBoxValidate);-deleted/corrected
 
-
-/** 
-
-$input.change(function() {
-    
-    if ($(this).is('checked' === 1 )) {
-        $errorMessage.show();
-        $errorCheckBox = false;
-        } else {
-        $errorMessage.hide();
-        $errorCheckBox = true;
-        }  
-    
-});
-*/
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
