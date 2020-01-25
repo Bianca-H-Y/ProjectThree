@@ -275,7 +275,7 @@ $errorMessage.hide();
 //setting this variable to false so the form isn't correct until user makes changes
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
-
+/** 
 //handler looking for changes
 $input.change(function(event) {
     //I'm not sure why this doesn't work per jquery:https://api.jquery.com/checkbox-selector/
@@ -289,6 +289,8 @@ $input.change(function(event) {
     
 });
  console.log($errorCheckBox);
+ console.log(typeof "checked");
+ */
 /**
  * I appended an error id to the activites class of the HTML so I could use .html to display an error message:'Please be sure at least one box is checked.'
  * I then add .css to label the warning in red
@@ -317,7 +319,7 @@ $input.change(function(event) {
 
 
 //Stop page from reloading if form not filled and add warnings: This is the validation I want to happen at submit
-/** 
+
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
@@ -338,9 +340,11 @@ $('form').submit( (e) => {
     if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
-    } else { 
+    } else if ($creditValid === true) { 
         $creditValid  = true;
-    }
+    } else {
+
+    };
 
 
     if ($zipCodeValid === false){
@@ -352,24 +356,24 @@ $('form').submit( (e) => {
 
 
     if ($cvvCodeValid === false) {
-        e.preventDefault();
+        //e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
     }
 
 
-    if ($errorCheckBox === false) {
-        $errorMessage.show();
-        e.preventDefault();
+   // if ($errorCheckBox === false) {
+     //   $errorMessage.show();
+       // e.preventDefault();
    //} else { 
        //return $errorCheckBox = true;
-    }
+    //}
    
 
    
 
 });
-console.log($errorCheckBox);
-  */  
+//console.log($errorCheckBox);
+
 

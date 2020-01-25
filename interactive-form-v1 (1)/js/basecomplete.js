@@ -272,7 +272,7 @@ let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
 $input.change(function() {
     
-    if ($(input).prop('checked')) {
+    if ($(this).is('checked' === 1 )) {
         $errorMessage.show();
         $errorCheckBox = false;
         } else {
@@ -284,6 +284,7 @@ $input.change(function() {
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
+
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();}
@@ -299,48 +300,41 @@ $('form').submit( (e) => {
        
     }
 
+    if ($creditValid === false) {
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+        e.preventDefault();
+    } else { 
+        $creditValid  = true;
+    }
+
+
+    if ($zipCodeValid === false){
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+        e.preventDefault();
+    } else { 
+        $zipCodeValid  = true;
+    }
+
+
+    if ($cvvCodeValid === false) {
+        e.preventDefault();
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+    } else { 
+        $cvvCodeValid  = true;
+    }
+
+
     if ($errorCheckBox === false) {
         $errorMessage.show();
         e.preventDefault();
    } else { 
-    $errorCheckBox = true;
+       return $errorCheckBox = true;
+
    } 
-
-
-});
-
-
-//Attempting to say if payment option is Credit card then validated these sections: working
-$('#payment').is(function(){
-    if ($('#payment option[value="credit card"]').attr('selected', true));{
-        if ($creditValid === false) {
-            $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-            event.preventDefault();
-        } else { 
-            $creditValid  = true;
-        } if ($zipCodeValid === false){
-            $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
-            e.preventDefault();
-        } else { 
-            $zipCodeValid  = true;
-        }
-    
-        if ($cvvCodeValid === false) {
-            e.preventDefault();
-            $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
-        } else { 
-            $cvvCodeValid  = true;
-        }
-    
+ 
    
-} 
-if ($('select option[value="paypal"]').attr('selected', true)) { 
-    return true; 
-}
-    if  ($('select option[value="bitcoin"]').attr('selected',true)); {
-        return true; 
-     
-    }
-
 
 });
+
+    
+
