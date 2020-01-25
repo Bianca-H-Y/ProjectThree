@@ -287,64 +287,43 @@ $('form').submit( (e) => {
 
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
-       // e.preventDefault();}
-        else { 
+        e.preventDefault();
+    }else { 
             $nameValid  = true;}
 
 
     if ($emailValid === false) {
         $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
-       // e.preventDefault();
+        e.preventDefault();
     } else { 
         $emailValid  = true;
        
     }
-    $('#payment').change(function(){
-        if ($(this).val() === 'credit card') {
-            if ($creditValid === false) {
-                $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-                //e.preventDefault();
-            } else { 
-                $creditValid  = true;
-            }if ($creditValid === false) {
-                $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-               // e.preventDefault();
-            } else { 
-                $creditValid  = true;
-            }if ($creditValid === false) {
-                $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
-              //  e.preventDefault();
-            } else { 
-                $creditValid  = true;
-            }
-        
-        
-            if ($zipCodeValid === false){
-                $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
-               // e.preventDefault();
-            } else { 
-                $zipCodeValid  = true;
-            }
-        
-        
-            if ($cvvCodeValid === false) {
-               // e.preventDefault();
-                $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
-            } else { 
-                $cvvCodeValid  = true;
-            } 
-         } else if ($('select option[value="paypal"]').attr('selected', true) || $('select option[value="bitcoin"]').attr('selected',true)) {
-           // e.preventDefault(false);
-            
-        } else {
-            e.preventDefault
-        }
-         
-    });
 
-    
+    if ($creditValid === false) {
+        $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
+        e.preventDefault();
+    } else { 
+        $creditValid  = true;
+    }
 
-/** 
+
+    if ($zipCodeValid === false){
+        $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
+        e.preventDefault();
+    } else { 
+        $zipCodeValid  = true;
+    }
+
+
+    if ($cvvCodeValid === false) {
+        e.preventDefault();
+        $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
+    } else { 
+        $cvvCodeValid  = true;
+    }
+
+
     if ($errorCheckBox === false) {
         $errorMessage.show();
         e.preventDefault();
@@ -352,7 +331,7 @@ $('form').submit( (e) => {
        return $errorCheckBox = true;
 
    } 
- */
+ 
    
 
 });
