@@ -103,11 +103,21 @@ $('.activities').change(function(event) {
 //target activity input elements--catch conflicting checkboxes//
 $('.activities').change(function(event) {
     let checkedBox = event.target;
+    //variable for checkboxes with the attribute 'data-day-and-time'
     const dateTimeSame = $(checkedBox).attr('data-day-and-time');
+    //variable for the input type checkbox
     const input = $('input[type="checkbox"]');
    input.each(function(index, value) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
+       /** Code Below:
+        * if a checkedbox w/ attribute 'data-day-time (dateTimeSame) 
+        * is equal (===) to any otherbox checkbox with the same attr 'data-day-time(heckedTime)
+        * AND  element with exact specified attribute (checkedBox.NAME) and not the same of any value:
+        * then if that box is checked and any attr don't conflict then allow
+        * otherwise dont allow selections
+       */
+    
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
         if ($(checkedBox).prop('checked')) {
             $(checkedBox).attr('disabled');
@@ -270,24 +280,33 @@ const $error = $('#error');
 $errorMessage.hide();
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
-$input.change(function() {
-    
-    if ($(this).is('checked' === 1 )) {
-        $errorMessage.show();
-        $errorCheckBox = false;
-        } else {
+//working!!! Steps on what code does below:
+//I'm looking for a change in the acitivities class
+$('.activities').change(function(event) {
+//if the checkbox input from the user leads to a checkedbox then $errormessage is hidden and set to true so form can submit
+    if (($input).is(':checked')){
         $errorMessage.hide();
         $errorCheckBox = true;
-        }  
-    
-});
+        // ABOVE: if a checkbox IS checked then don't display the warning
+       
+        } else {
+            //otherwise if a box isn't checked go back to false/incorrect/submit blocked and show the error message.
+            $errorMessage.show();
+            $errorCheckBox = false;
+        // ABOVE:if a checkbox is NOT checked display the warning
+        } 
+    });
+//console.log(typeof $errorMessage);
+//console.log(checkBoxValidate);-deleted/corrected
+
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
-        e.preventDefault();}
+        e.preventDefault();
+    }
         else { 
             $nameValid  = true;}
 
@@ -299,7 +318,27 @@ $('form').submit( (e) => {
         $emailValid  = true;
        
     }
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
+   } else { 
+      $errorCheckBox = true;
 
+   } 
+//NEXT STEP/LAST
+// need to include code that says if CC is selected then do all of the folowing: otherwise if paypal or bitcoin is selected allow submission
+  //the credit card section is blocked is user tries to submit before inputinfo, but as long as name,email, and activity is selected, then form 
+  //can sumbit--so skye 2 problems
+  //I think this is b/c: 
+  //I think the solution to allow paypal and bitcoin is to return true i.e. correct
+  //  } else  if (bitcoin||paypal){ 
+    // return $errorCheckBox = true;
+//} 
+
+
+//if creditcard is selected then do the following:
+if ($('#payment').val() === 'credit card'){
+    //This validates cc number length
     if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
@@ -307,7 +346,7 @@ $('form').submit( (e) => {
         $creditValid  = true;
     }
 
-
+    //This validateds cc zipcode
     if ($zipCodeValid === false){
         $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
         e.preventDefault();
@@ -315,25 +354,16 @@ $('form').submit( (e) => {
         $zipCodeValid  = true;
     }
 
-
+ //This validateds CVV 
     if ($cvvCodeValid === false) {
         e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
     }
-
-
-    if ($errorCheckBox === false) {
-        $errorMessage.show();
-        e.preventDefault();
-   } else { 
-       return $errorCheckBox = true;
-
-   } 
- 
-   
-
+} else {
+    ($('#payment').val() === 'paypal')|| ($('#payment').val() === 'bitcoin');
+}
 });
 
     

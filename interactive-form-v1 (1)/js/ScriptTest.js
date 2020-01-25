@@ -24,7 +24,7 @@ $('#title').change(function(){
         $('#other-title').hide();
     }
 });
-
+//Exceeds #1
 //Tshirt section hide color options until the 2 shirt options are selected//
 //add select theme message//
 const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
@@ -177,6 +177,8 @@ $name.focusout(function(event) {
     if ($name.val() === "") {
     $nameValid = false; //this is the error flag
      //background turns red and asks for a name
+     //exceeds #2 real time errors set for name and e-mails if user does incorectly notice comes before submit
+     //exceeds #3 part 1-part 2 in form submit handler
     $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
@@ -197,14 +199,16 @@ $email.focusout(function(event) {
     if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
         //background turns red and asks for correct email
+         //exceeds #3 part 1-part 2 in form submit handler
         $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
     } else { 
         $emailValid = true;
            //background turns green and with correct email
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
+   
 });
-
+ 
 
 
 
@@ -304,7 +308,7 @@ $('.activities').change(function(event) {
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
-        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the email section'});
         e.preventDefault();
     }
         else { 
@@ -312,7 +316,7 @@ $('form').submit( (e) => {
 
 
     if ($emailValid === false) {
-        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the email section'});
         e.preventDefault();
     } else { 
         $emailValid  = true;
