@@ -24,7 +24,7 @@ $('#title').change(function(){
         $('#other-title').hide();
     }
 });
-
+//Exceeds #1
 //Tshirt section hide color options until the 2 shirt options are selected//
 //add select theme message//
 const $selectDesignTheme = $('#color').prepend('<option>Please Select a T-shirt theme:</option>');
@@ -103,11 +103,21 @@ $('.activities').change(function(event) {
 //target activity input elements--catch conflicting checkboxes//
 $('.activities').change(function(event) {
     let checkedBox = event.target;
+    //variable for checkboxes with the attribute 'data-day-and-time'
     const dateTimeSame = $(checkedBox).attr('data-day-and-time');
+    //variable for the input type checkbox
     const input = $('input[type="checkbox"]');
    input.each(function(index, value) {
        const checkedTime = $(value).attr('data-day-and-time');
        //use one statement with and operator being sure to note when items are like//
+       /** Code Below:
+        * if a checkedbox w/ attribute 'data-day-time (dateTimeSame) 
+        * is equal (===) to any otherbox checkbox with the same attr 'data-day-time(heckedTime)
+        * AND  element with exact specified attribute (checkedBox.NAME) and not the same of any value:
+        * then if that box is checked and any attr don't conflict then allow
+        * otherwise dont allow selections
+       */
+    
        if (dateTimeSame === checkedTime && checkedBox.name !== value.name) {
         if ($(checkedBox).prop('checked')) {
             $(checkedBox).attr('disabled');
@@ -167,6 +177,8 @@ $name.focusout(function(event) {
     if ($name.val() === "") {
     $nameValid = false; //this is the error flag
      //background turns red and asks for a name
+     //exceeds #2 real time errors set for name and e-mails if user does incorectly notice comes before submit
+     //exceeds #3 part 1-part 2 in form submit handler
     $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
     } else { 
     $nameValid = true;
@@ -187,14 +199,16 @@ $email.focusout(function(event) {
     if (!$emailReg.test($emailValue)) {
         $emailValid = false; //this is the error flag
         //background turns red and asks for correct email
+         //exceeds #3 part 1-part 2 in form submit handler
         $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
     } else { 
         $emailValid = true;
            //background turns green and with correct email
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
+   
 });
-
+ 
 
 
 
@@ -270,23 +284,31 @@ const $error = $('#error');
 $errorMessage.hide();
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
-$input.change(function() {
-    
-    if ($(this).is('checked' === 1 )) {
-        $errorMessage.show();
-        $errorCheckBox = false;
-        } else {
+//working!!! Steps on what code does below:
+//I'm looking for a change in the acitivities class
+$('.activities').change(function(event) {
+//if the checkbox input from the user leads to a checkedbox then $errormessage is hidden and set to true so form can submit
+    if (($input).is(':checked')){
         $errorMessage.hide();
         $errorCheckBox = true;
-        }  
-    
-});
+        // ABOVE: if a checkbox IS checked then don't display the warning
+       
+        } else {
+            //otherwise if a box isn't checked go back to false/incorrect/submit blocked and show the error message.
+            $errorMessage.show();
+            $errorCheckBox = false;
+        // ABOVE:if a checkbox is NOT checked display the warning
+        } 
+    });
+//console.log(typeof $errorMessage);
+//console.log(checkBoxValidate);-deleted/corrected
+
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
-        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the name section'});
         e.preventDefault();
     }
         else { 
@@ -294,13 +316,25 @@ $('form').submit( (e) => {
 
 
     if ($emailValid === false) {
-        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter a full email'});
+        $email.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the email section'});
         e.preventDefault();
     } else { 
         $emailValid  = true;
        
     }
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
+   } else { 
+      $errorCheckBox = true;
 
+   } 
+//section regarding payment options within the form handler:
+// code that says if CC is selected then do all of the folowing: otherwise if paypal or bitcoin is selected allow submission
+
+//if creditcard is selected then do the following:
+if ($('#payment').val() === 'credit card'){
+    //This validates cc number length
     if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
@@ -308,7 +342,7 @@ $('form').submit( (e) => {
         $creditValid  = true;
     }
 
-
+    //This validateds cc zipcode
     if ($zipCodeValid === false){
         $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
         e.preventDefault();
@@ -316,25 +350,17 @@ $('form').submit( (e) => {
         $zipCodeValid  = true;
     }
 
-
+ //This validateds CVV 
     if ($cvvCodeValid === false) {
         e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
     }
-
-
-    if ($errorCheckBox === false) {
-        $errorMessage.show();
-        e.preventDefault();
-   } else { 
-       return $errorCheckBox = true;
-
-   } 
- 
-   
-
+    //otherwise allow submission if paypal or bitcoin
+} else {
+    ($('#payment').val() === 'paypal')|| ($('#payment').val() === 'bitcoin');
+}
 });
 
     
