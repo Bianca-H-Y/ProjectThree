@@ -318,8 +318,23 @@ $('form').submit( (e) => {
         $emailValid  = true;
        
     }
+    if ($errorCheckBox === false) {
+        $errorMessage.show();
+        e.preventDefault();
+   } else { 
+      $errorCheckBox = true;
 
-    if ($creditValid === false) {
+   } 
+//NEXT STEP/LAST
+// need to include code that says if CC is selected then do all of the folowing: otherwise if paypal or bitcoin is selected allow submission
+  //the credit card section is blocked is user tries to submit before inputinfo, but as long as name,email, and activity is selected, then form 
+  //can sumbit--so skye 2 problems
+  //I think this is b/c: 
+  //I think the solution to allow paypal and bitcoin is to return true i.e. correct
+  //  } else  if (bitcoin||paypal){ 
+    // return $errorCheckBox = true;
+//} 
+if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
     } else { 
@@ -343,13 +358,7 @@ $('form').submit( (e) => {
     }
 
 
-    if ($errorCheckBox === false) {
-        $errorMessage.show();
-        e.preventDefault();
-   } else { 
-       return $errorCheckBox = true;
-
-   } 
+   
  
    
 
