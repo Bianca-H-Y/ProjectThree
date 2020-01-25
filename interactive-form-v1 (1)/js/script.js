@@ -266,21 +266,40 @@ const $errorDiv = $('<div id="error"></div>');
 const $errorAdd = $('.activities').append($errorDiv);
 const $errorMessage= $('#error').html('Please be sure at least one box is checked.').css({backgroundColor: '#f25124'});
 const $error = $('#error');
+
 //the error code is showing up so hide until action taken
 $errorMessage.hide();
 let $errorCheckBox = false;
 const $input = $('input[type="checkbox"]');
+
 $input.change(function() {
     
-    if ($(this).is('checked' === 1 )) {
+    if ($(this).is('checked' !== 1 )) {
         $errorMessage.show();
         $errorCheckBox = false;
-        } else {
-        $errorMessage.hide();
-        $errorCheckBox = true;
-        }  
+        } else if ('checked' === 1) {
+            $errorMessage.hide();
+             $errorCheckBox = true;
+        }
+        //need code that adds for when a user checks the box and then unchecks
     
 });
+ 
+/**
+ * What to do if a box is checked function
+ * if at least one box is checked {
+ * if the box checked is false
+ *  show the errormessage appended activites
+ * } else if () {
+ * if a box is checked return true
+ * }
+ * 
+ * 
+ * }
+ * 
+ * 
+ */
+
 
 //Stop page from reloading if form not filled and add warnings
 $('form').submit( (e) => {
@@ -327,14 +346,14 @@ $('form').submit( (e) => {
     if ($errorCheckBox === false) {
         $errorMessage.show();
         e.preventDefault();
-   } else { 
-       return $errorCheckBox = true;
+   //} else { 
+       //return $errorCheckBox = true;
+    }
+   
 
-   } 
- 
    
 
 });
-
+console.log($errorCheckBox);
     
 
