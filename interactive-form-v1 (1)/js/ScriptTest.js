@@ -308,7 +308,7 @@ $('.activities').change(function(event) {
 $('form').submit( (e) => {
 
     if ($nameValid === false) {
-        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the email section'});
+        $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please fill out the name section'});
         e.preventDefault();
     }
         else { 
