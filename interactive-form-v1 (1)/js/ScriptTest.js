@@ -334,14 +334,19 @@ $('form').submit( (e) => {
   //  } else  if (bitcoin||paypal){ 
     // return $errorCheckBox = true;
 //} 
-if ($creditValid === false) {
+
+
+//if creditcard is selected then do the following:
+if ($('#payment').val() === 'credit card'){
+    //This validates cc number length
+    if ($creditValid === false) {
         $creditLength.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter 13-16 digits'});
         e.preventDefault();
     } else { 
         $creditValid  = true;
     }
 
-
+    //This validateds cc zipcode
     if ($zipCodeValid === false){
         $zipCodeLength.css({backgroundColor: '#f25124'}).attr({placeholder: '5 digit Zipcode'});
         e.preventDefault();
@@ -349,19 +354,16 @@ if ($creditValid === false) {
         $zipCodeValid  = true;
     }
 
-
+ //This validateds CVV 
     if ($cvvCodeValid === false) {
         e.preventDefault();
         $cvvCodeLength .css({backgroundColor: '#f25124'}).attr({placeholder: '3 digit CVV'});
     } else { 
         $cvvCodeValid  = true;
     }
-
-
-   
- 
-   
-
+} else {
+    ($('#payment').val() === 'paypal')|| ($('#payment').val() === 'bitcoin');
+}
 });
 
     
