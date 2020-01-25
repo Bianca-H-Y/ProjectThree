@@ -175,7 +175,6 @@ $name.focusout(function(event) {
    }
 
 });
-
 //email message: working
 const $email = $('#mail');
 let $emailValid = false;
@@ -195,7 +194,6 @@ $email.focusout(function(event) {
         $email.css({backgroundColor: '#1d5e04'}).removeAttr({placeholder: 'Please enter a full email'});
    }
 });
-
 
 
 
@@ -290,7 +288,8 @@ $('form').submit( (e) => {
     if ($nameValid === false) {
         $name.css({backgroundColor: '#f25124'}).attr({placeholder: 'Please enter your name'});
         e.preventDefault();
-    }else { 
+    }
+        else { 
             $nameValid  = true;}
 
 
