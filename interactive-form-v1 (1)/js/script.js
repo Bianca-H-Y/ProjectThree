@@ -2,7 +2,6 @@
 const $newDiv = $('<div id="total"></div>');
 const allClassSelected = $('.activities').append($newDiv);
 let $classTotal= 0;
-//test passed that JS is attached to HTML file: console.log('Hey');//
 //used CDN link for minified version of jQuery.
 //add style sheet successful:https://teamtreehouse.com/library/css-reset-with-normalize//
 
@@ -85,7 +84,6 @@ $('.activities').change(function(event) {
     
 
     //Add if else statement to handler to add the cost if checkbox is clicked and to subtract if not//
-    //if ($checkedBox.prop('checked', true)){
     if ($checkedBox.prop('checked')){
     $classTotal = $classTotal + $checkedClassTotalNumber;
     //add classTotal concatenation with  Total: $ and show total with html jquery//
@@ -109,7 +107,6 @@ $('.activities').change(function(event) {
     const input = $('input[type="checkbox"]');
    input.each(function(index, value) {
        const checkedTime = $(value).attr('data-day-and-time');
-       //use one statement with and operator being sure to note when items are like//
        /** Code Below:
         * if a checkedbox w/ attribute 'data-day-time (dateTimeSame) 
         * is equal (===) to any otherbox checkbox with the same attr 'data-day-time(heckedTime)
@@ -300,8 +297,6 @@ $('.activities').change(function(event) {
         // ABOVE:if a checkbox is NOT checked display the warning
         } 
     });
-//console.log(typeof $errorMessage);
-//console.log(checkBoxValidate);-deleted/corrected
 
 
 //Stop page from reloading if form not filled and add warnings
